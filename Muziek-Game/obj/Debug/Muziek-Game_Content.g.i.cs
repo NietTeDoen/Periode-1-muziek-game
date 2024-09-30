@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("assets/netherportal.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("assets/concept_game-removebg-preview.png")]
 
 

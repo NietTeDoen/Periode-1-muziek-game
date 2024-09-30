@@ -68,6 +68,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Block.cs" />
+    <Compile Include="CharacterManager.cs" />
     <Compile Include="Levels.cs" />
     <Compile Include="MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
@@ -104,7 +105,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Assets\Character.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\NetherPortal.png" />
   </ItemGroup>

@@ -12,7 +12,9 @@ namespace Muziek_Game
         private List<Block> blocks;
         private Canvas gameCanvas;
         private PortalManager portalManager;
+        private CharacterManager characterManager;
         private int[] portalPositie = { 1000, 200 };
+        private int[] characterPositie = { 100, 200 };
         private Stopwatch stopwatch; // Voor delta timing
         private long previousTime;
         private List<Level> levels;
@@ -40,6 +42,7 @@ namespace Muziek_Game
 
             gameCanvas = GameCanvas; // Verbind de gameCanvas van XAML
             portalManager = new PortalManager(); // Initialiseer de portal manager
+            characterManager = new CharacterManager(); //Initialiseer de character manager
 
             StartGame(); // Start het spel
         }
@@ -76,8 +79,9 @@ namespace Muziek_Game
                 }
             }
 
-            // Initialiseer het portaal
+            // Initialiseer het portaal en het karakter
             portalManager.InitializePortal(gameCanvas, portalPositie);
+            characterManager.InitializeCharacter(gameCanvas, characterPositie);
         }
 
         public void StartGame()
