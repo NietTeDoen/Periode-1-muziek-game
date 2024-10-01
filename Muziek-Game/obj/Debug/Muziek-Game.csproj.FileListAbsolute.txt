@@ -54,5 +54,7 @@ C:\Users\hfhaa\OneDrive\Documenten\Periode-1-muziek-game\Muziek-Game\obj\Debug\S
 C:\Users\hfhaa\OneDrive\Documenten\Periode-1-muziek-game\Muziek-Game\obj\Debug\Settings.g.cs
 C:\Users\hfhaa\OneDrive\Documenten\Periode-1-muziek-game\Muziek-Game\obj\Debug\GameControl.baml
 C:\Users\hfhaa\OneDrive\Documenten\Periode-1-muziek-game\Muziek-Game\obj\Debug\GameControl.g.cs
-C:\Users\hfhaa\OneDrive\Documenten\Periode-1-muziek-game\Muziek-Game\obj\Debug\ShopWindow.baml
-C:\Users\hfhaa\OneDrive\Documenten\Periode-1-muziek-game\Muziek-Game\obj\Debug\ShopWindow.g.cs
+C:\Users\hfhaa\OneDrive\Documenten\Periode-1-muziek-game\Muziek-Game\obj\Debug\ItemShop.baml
+C:\Users\hfhaa\OneDrive\Documenten\Periode-1-muziek-game\Muziek-Game\obj\Debug\ItemShop.g.cs
+C:\Users\hfhaa\OneDrive\Documenten\Periode-1-muziek-game\Muziek-Game\obj\Debug\ProfilePage.baml
+C:\Users\hfhaa\OneDrive\Documenten\Periode-1-muziek-game\Muziek-Game\obj\Debug\ProfilePage.g.cs
