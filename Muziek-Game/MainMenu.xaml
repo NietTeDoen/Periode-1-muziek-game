@@ -5,16 +5,40 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Muziek_Game"
         mc:Ignorable="d"
-        Title="MainMenu" Height="450" Width="800">
+        Title="MainMenu" Height="720" Width="1280">
     <Grid>
-        <!-- Gebruik StackPanel om een rij buttons te creëren -->
-        <StackPanel Orientation="Vertical" 
-                    HorizontalAlignment="Center" 
-                    VerticalAlignment="Center">
-            <!-- Buttons in een rij -->
-            <Button Click="Button_Click" Width="100" Height="50" Margin="10"> Button 1 </Button>
-            <Button Width="100" Height="50" Margin="10"> Button 2 </Button>
-            <Button Width="100" Height="50" Margin="10">Button 3</Button>
-        </StackPanel>
+        <Grid>
+            <!-- Define two rows and two columns -->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Button 1 in the top-left section -->
+            <Button Grid.Row="0" Grid.Column="0" Content="Profiel" Click="Button_Click" 
+        FontSize="43" FontWeight="Bold" FontFamily="Arial" />
+
+            <!-- Button 2 in the top-right section -->
+            <Button Grid.Row="0" Grid.Column="1" Content="Mods" 
+        FontSize="43" FontWeight="Bold" FontFamily="Arial" />
+
+            <!-- Button 3 in the bottom-left section -->
+            <Button Grid.Row="1" Grid.Column="0" Content="Instellingen" 
+        FontSize="43" FontWeight="Bold" FontFamily="Arial" />
+
+            <!-- Button 4 in the bottom-right section -->
+            <Button Grid.Row="1" Grid.Column="1" Content="Winkel" 
+        FontSize="43" FontWeight="Bold" FontFamily="Arial" />
+
+        </Grid>
+        <Border Width="300" Height="300" CornerRadius="1000" BorderBrush="Black" BorderThickness="1">
+            <Button Content="PLAY" HorizontalAlignment="Center" VerticalAlignment="Center"
+            FontSize="43" FontWeight="Bold" FontFamily="Arial" />
+        </Border>
+
     </Grid>
 </Window>
