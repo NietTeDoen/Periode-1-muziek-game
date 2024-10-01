@@ -10,44 +10,53 @@ namespace Muziek_Game
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ProfileButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Profiel knop geklikt!");
+            // Navigeren naar de profielpagina
+            var mainWindow = Window.GetWindow(this) as MainWindow;
+            if (mainWindow != null)
+            {
+                mainWindow.MainContent.Content = new ProfilePage(); // Zorg ervoor dat je een ProfilePage UserControl hebt
+            }
+        }
+
+        private void ModsButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Navigeren naar de mods pagina
+            var mainWindow = Window.GetWindow(this) as MainWindow;
+            if (mainWindow != null)
+            {
+                mainWindow.MainContent.Content = new ModsMenu(); // Zorg ervoor dat je een ModsMenu UserControl hebt
+            }
         }
 
         private void SettingsButton_Click(object sender, RoutedEventArgs e)
         {
+            // Navigeer naar het instellingenmenu
             var window = Window.GetWindow(this) as MainWindow;
             if (window != null)
             {
-                window.MainContent.Content = new Settings();
-            }
-        }
-
-        private void PlayButton_Click(object sender, RoutedEventArgs e)
-        {
-            var mainWindow = Window.GetWindow(this) as MainWindow;
-            if (mainWindow != null)
-            {
-                mainWindow.MainContent.Content = new GameControl();
+                window.MainContent.Content = new Settings(); // Zorg ervoor dat je een Settings UserControl hebt
             }
         }
 
         private void ShopButton_Click(object sender, RoutedEventArgs e)
         {
-            var window = Window.GetWindow(this) as MainWindow;
-            if (window != null)
+            // Navigeren naar de winkelpagina
+            var mainWindow = Window.GetWindow(this) as MainWindow;
+            if (mainWindow != null)
             {
-                window.MainContent.Content = new ItemShop();
+                mainWindow.MainContent.Content = new ItemShop(); // Zorg ervoor dat je een ShopMenu UserControl hebt
             }
         }
 
-        private void ProfileButton_Click(object sender, RoutedEventArgs e)
+        private void PlayButton_Click(object sender, RoutedEventArgs e)
         {
-            var window = Window.GetWindow(this) as MainWindow;
-            if (window != null)
+            // Laad de game
+            var mainWindow = Window.GetWindow(this) as MainWindow;
+            if (mainWindow != null)
             {
-                window.MainContent.Content = new ProfilePage(); // Zorg ervoor dat deze UserControl bestaat
+                mainWindow.MainContent.Content = new GameControl(); // Vervang het menu door de game
             }
         }
     }
