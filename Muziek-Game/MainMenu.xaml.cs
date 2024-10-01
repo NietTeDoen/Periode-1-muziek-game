@@ -1,23 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Muziek_Game
 {
-    /// <summary>
-    /// Interaction logic for MainMenu.xaml
-    /// </summary>
-    public partial class MainMenu : Window
+    public partial class MainMenu : UserControl
     {
         public MainMenu()
         {
@@ -26,14 +12,37 @@ namespace Muziek_Game
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow MWindow = new MainWindow();
-            MWindow.Visibility = Visibility.Visible;
-            this.Visibility = Visibility.Hidden;
+            MessageBox.Show("Profiel knop geklikt!");
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void SettingsButton_Click(object sender, RoutedEventArgs e)
         {
+            // Navigeer naar het instellingenmenu
+            var window = Window.GetWindow(this) as MainWindow;
+            if (window != null)
+            {
+                window.MainContent.Content = new Settings(); // Zorg ervoor dat je een Settings UserControl hebt
+            }
+        }
 
+        private void PlayButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Laad de game
+            var mainWindow = Window.GetWindow(this) as MainWindow;
+            if (mainWindow != null)
+            {
+                mainWindow.MainContent.Content = new GameControl(); // Vervang het menu door de game
+            }
+        }
+
+        private void ShopButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Laad de item shop
+            var mainWindow = Window.GetWindow(this) as MainWindow;
+            if (mainWindow != null)
+            {
+                mainWindow.MainContent.Content = new ItemShop(); // Vervang het menu door de winkel
+            }
         }
     }
 }

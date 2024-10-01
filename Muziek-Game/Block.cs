@@ -30,7 +30,7 @@ internal class Block
 
     public void MoveLeft(double deltaTime)
     {
-        double newX = Canvas.GetLeft(BlockObj) - Speed * deltaTime; // Vermijd het opnieuw berekenen van waarden
+        double newX = Canvas.GetLeft(BlockObj) - Speed * deltaTime; // Verplaats de blokken naar links
         Canvas.SetLeft(BlockObj, newX);
     }
 }

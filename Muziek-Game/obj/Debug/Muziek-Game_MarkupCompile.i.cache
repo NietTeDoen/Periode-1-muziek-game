@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\hfhaa\Documents\Periode-1-muziek-game\Muziek-Game\obj\Debug\
+C:\Users\hfhaa\OneDrive\Documenten\Periode-1-muziek-game\Muziek-Game\obj\Debug\
 Muziek_Game
 none
 false
 DEBUG;TRACE
-C:\Users\hfhaa\Documents\Periode-1-muziek-game\Muziek-Game\App.xaml
-2-1310262535
+C:\Users\hfhaa\OneDrive\Documenten\Periode-1-muziek-game\Muziek-Game\App.xaml
+6-1117029797
 
-11-1843886038
+15783229696
 13-1310406943
-MainMenu.xaml;MainWindow.xaml;
+MainWindow.xaml;MainMenu.xaml;Menu.xaml;ItemShop.xaml;Settings.xaml;GameControl.xaml;
 
-True
+False
 
