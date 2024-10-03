@@ -12,8 +12,8 @@ namespace Muziek_Game
         private List<Block> blocks; // Lijst om alle blokken op te slaan
         private PortalManager portalManager; // Beheerder voor portalen
         private CharacterManager characterManager; // Beheerder voor het karakter
-        private int[] portalPositie = { 1000, 200 }; // Startpositie voor het portaal
-        private int[] characterPositie = { 100, 200 }; // Startpositie voor het karakter
+        private int[] portalPositie = { 1000, 300 }; // Startpositie voor het portaal
+        private int[] characterPositie = { 100, 300 }; // Startpositie voor het karakter
         private Stopwatch stopwatch; // Voor delta timing
         private long previousTime; // Tijd van de vorige frame
         private List<Level> levels; // Lijst van niveaus
@@ -50,8 +50,8 @@ namespace Muziek_Game
             Level currentLevel = levels[levelIndex];
             blocks = new List<Block>(); // Reset de blokkenlijst voor het nieuwe niveau
 
-            int upperRowY = 150; // Y-positie voor de bovenste rij
-            int lowerRowY = 350; // Y-positie voor de onderste rij
+            int upperRowY = 350; // Y-positie voor de bovenste rij
+            int lowerRowY = 550; // Y-positie voor de onderste rij
 
             // Spawn blokken op basis van de array van het huidige niveau
             for (int i = 0; i < currentLevel.BlockRows.Length; i++)
