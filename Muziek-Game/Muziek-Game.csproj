@@ -153,5 +153,12 @@
   <ItemGroup>
     <Resource Include="Assets\NetherPortal.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Character Animation\color1.png" />
+    <Resource Include="Assets\Character Animation\color2.png" />
+    <Resource Include="Assets\Character Animation\color3.png" />
+    <Resource Include="Assets\Character Animation\color4.png" />
+    <Resource Include="Assets\Character Animation\color5.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
