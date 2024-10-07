@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace Muziek_Game
 {
-    public partial class GameControl : UserControl
+    public partial class GameControl
     {
         private List<Block> blocks; // Lijst om alle blokken op te slaan
         private PortalManager portalManager; // Beheerder voor portalen
@@ -41,6 +42,28 @@ namespace Muziek_Game
             characterManager = new CharacterManager(); // Initialiseer de character manager
 
             StartGame(); // Start het spel
+            //GameCanvas.Focus();
+        }
+
+        //Gekopieerd van Jan
+        private void ProcessInput(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Up)
+            {
+                if (characterPositie[1] == 300)
+                //{
+                    //characterPositie[1] = 400;
+                    characterManager.MoveTop();
+                //}
+            }
+            else if (e.Key == Key.Down)
+            {
+                //if (characterPositie[1] == 400)
+                //{
+                    //characterPositie[1] = 300;
+                    characterManager.MoveBottom();
+                //}
+            }
         }
 
         public void LoadLevel(int levelIndex)
@@ -98,6 +121,7 @@ namespace Muziek_Game
             previousTime = currentTime;
 
             UpdateBlocks(deltaTime); // Update de blokken
+            GameCanvas.Focus();
         }
 
         public void SpawnBlock(int startY, int startX, bool firstRow)

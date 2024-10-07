@@ -1,9 +1,10 @@
-﻿<UserControl x:Class="Muziek_Game.GameControl"
+﻿    <UserControl x:Class="Muziek_Game.GameControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             Height="720" Width="1280">
+             Height="720" Width="1280"
+             KeyDown="ProcessInput">
     <Grid>
-        <Canvas x:Name="GameCanvas" Background="White">
+        <Canvas x:Name="GameCanvas" Background="White" Focusable="True">
             <!-- Game elementen worden hier toegevoegd -->
         </Canvas>
 

@@ -41,5 +41,15 @@ namespace Muziek_Game
                 return 0;
             }
         }
+        public void MoveTop()
+        {
+            //double newY = Canvas.GetLeft(BlockObj) - Speed * deltaTime; // Verplaats de blokken naar links
+            Canvas.SetTop(character, 300);
+        }
+        public void MoveBottom()
+        {
+            //double newX = Canvas.GetLeft(BlockObj) - Speed * deltaTime; // Verplaats de blokken naar links
+            Canvas.SetTop(character, 400);
+        }
     }
 }
