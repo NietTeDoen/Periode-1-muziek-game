@@ -1,14 +1,19 @@
 ﻿using System;
+using System.IO;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Muziek_Game
 {
     public class CharacterManager
     {
         private Rectangle character;
+        private DispatcherTimer animationTimer;
+        private string[] animationFrames;
+        private int currentFrame = 0;
 
         public int InitializeCharacter(Canvas gameCanvas, int[] characterPositie)
         {
@@ -21,10 +26,17 @@ namespace Muziek_Game
                     Height = 300,
                 };
 
-                // Stel de afbeelding in voor het karakter
-                ImageBrush imageBrush = new ImageBrush();
-                imageBrush.ImageSource = new BitmapImage(new Uri("pack://application:,,,/Assets/Character.png", UriKind.Absolute));
-                character.Fill = imageBrush;
+                // Laad animatieframes vanuit de "Character Animation" map
+                string characterFolderPath = "pack://application:,,,/Assets/Character%20Animation/";
+                animationFrames = LoadAnimationFrames(characterFolderPath);
+
+                // Stel de eerste afbeelding in
+                if (animationFrames.Length > 0)
+                {
+                    ImageBrush imageBrush = new ImageBrush();
+                    imageBrush.ImageSource = new BitmapImage(new Uri(animationFrames[0], UriKind.Absolute));
+                    character.Fill = imageBrush;
+                }
 
                 // Positioneer het karakter op het canvas
                 Canvas.SetLeft(character, characterPositie[0]);
@@ -33,6 +45,9 @@ namespace Muziek_Game
                 // Voeg het karakter toe aan het canvas
                 gameCanvas.Children.Add(character);
 
+                // Start de animatie met een timer
+                StartAnimation();
+
                 return 1;
             }
             catch (Exception error)
@@ -40,6 +55,47 @@ namespace Muziek_Game
                 Console.WriteLine(error.Message);
                 return 0;
             }
+        }
+
+        private string[] LoadAnimationFrames(string folderPath)
+        {
+            try
+            {
+                // Handmatig de juiste URIs bouwen voor elke afbeelding
+                string[] frames = {
+                    folderPath + "color1.png",
+                    folderPath + "color2.png",
+                    folderPath + "color3.png",
+                    folderPath + "color4.png",
+                    folderPath + "color5.png"
+                };
+                return frames;
+            }
+            catch (Exception error)
+            {
+                Console.WriteLine("Fout bij het laden van animatieframes: " + error.Message);
+                return new string[0];
+            }
+        }
+
+        private void StartAnimation()
+        {
+            animationTimer = new DispatcherTimer();
+            animationTimer.Interval = TimeSpan.FromMilliseconds(100); // 100 ms per frame
+            animationTimer.Tick += UpdateAnimationFrame;
+            animationTimer.Start();
+        }
+
+        private void UpdateAnimationFrame(object sender, EventArgs e)
+        {
+            if (animationFrames.Length == 0)
+                return;
+
+            // Update het frame van de animatie
+            currentFrame = (currentFrame + 1) % animationFrames.Length;
+            ImageBrush imageBrush = new ImageBrush();
+            imageBrush.ImageSource = new BitmapImage(new Uri(animationFrames[currentFrame], UriKind.Absolute));
+            character.Fill = imageBrush;
         }
     }
 }
