@@ -25,8 +25,22 @@
 
         <Border Width="300" Height="300" CornerRadius="1000" BorderBrush="Black" 
                 BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button Content="PLAY" HorizontalAlignment="Center" VerticalAlignment="Center"
-                    FontSize="43" FontWeight="Bold" FontFamily="Arial" Click="PlayButton_Click"/>
+            <Button Content="PLAY" FontSize="43" FontWeight="Bold" FontFamily="Arial" Click="PlayButton_Click">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Ellipse x:Name="PlayButton"  Fill= "LightGray" StrokeThickness="10"/>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <!-- Verander de achtergrondkleur als de muis over de knop gaat -->
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="PlayButton" Property="Fill" Value="#ADD8E6"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
         </Border>
     </Grid>
 </UserControl>
