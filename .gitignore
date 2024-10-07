@@ -1,101 +1,44 @@
-# Build results
-[Dd]ebug/
-[Rr]elease/
-x64/
-x86/
-[Aa][Rr][Mm]/
-[Aa][Rr][Mm]64/
-bld/
-[Bb]in/
-[Oo]bj/
+# Ignore build results
+Muziek-Game/Debug/
+Muziek-Game/Release/
+Muziek-Game/x64/
+Muziek-Game/x86/
+Muziek-Game/ARM/
+Muziek-Game/ARM64/
+Muziek-Game/bld/
+Muziek-Game/bin/
+Muziek-Game/obj/
 
-# NuGet Packages
-*.nupkg
-**/[Pp]ackages/*
-# NuGet v3's project.json files produces more ignorable files
-*.nuget.props
-*.nuget.targets
+# Ignore NuGet Packages
+Muziek-Game/*.nupkg
+Muziek-Game/**/[Pp]ackages/*
 
-# Windows image file caches
-Thumbs.db
-ehthumbs.db
+# Ignore Windows-specific and user-specific files
+Muziek-Game/Thumbs.db
+Muziek-Game/ehthumbs.db
+Muziek-Game/Desktop.ini
+Muziek-Game/$RECYCLE.BIN/
 
-# Folder config file
-Desktop.ini
+# Ignore Visual Studio caches and logs
+Muziek-Game/.vs/
+Muziek-Game/.vscode/
+Muziek-Game/*.VC.db
+Muziek-Game/*.VC.VC.opendb
 
-# Recycle Bin used on file shares
-$RECYCLE.BIN/
+# Ignore temporary files and logs
+Muziek-Game/*.log
+Muziek-Game/*.tlog
+Muziek-Game/*.tmp
+Muziek-Game/*.svclog
 
-# User-specific files
-*.rsuser
-*.suo
-*.user
-*.userosscache
-*.userprefs
-*.sln.docstates
+# Ignore generated files
+Muziek-Game/*.g.*
+Muziek-Game/*.designer.cs
+Muziek-Game/*.dbmdl
+Muziek-Game/*.opendb
 
-# Mono Auto Generated Files
-mono_crash.*
+# Ignore other caches and auto-generated files
+Muziek-Game/*.cache
 
-# Windows crash dumps
-*.stackdump
-
-# Windows event logs
-*.evtx
-
-# Rider
-.idea/
-*.sln.iml
-
-# Visual Studio caches and logs
+Muziek-Game/bin/
 .vs/
-.vscode/
-*.VC.db
-*.VC.VC.opendb
-
-# Build log files
-*.log
-*.tlog
-*.tmp
-*.svclog
-
-# Auto-generated designer files (WPF, Windows Forms, etc.)
-*.g.*
-*.designer.cs
-*.dbmdl
-*.opendb
-
-# Web publishing
-.publish.xml
-.publishsettings
-
-# Coverage Results
-*.coverage
-*.coveragexml
-
-# SQL Server database files
-*.mdf
-*.ldf
-
-# Entity Framework migrations
-*_Migration.cs
-
-# JetBrains Rider project files
-.idea/
-
-# ASP.NET Scaffolding
-ScaffoldingReadMe.txt
-
-# Client-side libraries folder managed by LibMan
-libman.json
-wwwroot/lib/
-
-# MSBuild files
-project.lock.json
-project.fragment.lock.json
-
-# npm packages folder
-node_modules/
-
-# Cache files
-*.cache
