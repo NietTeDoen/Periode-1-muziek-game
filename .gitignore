@@ -1,101 +1,102 @@
 # Build results
-[Dd]ebug/
-[Rr]elease/
-x64/
-x86/
-[Aa][Rr][Mm]/
-[Aa][Rr][Mm]64/
-bld/
-[Bb]in/
-[Oo]bj/
+Muziek-Game/[Dd]ebug/
+Muziek-Game/[Rr]elease/
+Muziek-Game/x64/
+Muziek-Game/x86/
+Muziek-Game/[Aa][Rr][Mm]/
+Muziek-Game/[Aa][Rr][Mm]64/
+Muziek-Game/bld/
+Muziek-Game/[Bb]in/
+Muziek-Game/[Oo]bj/
 
 # NuGet Packages
-*.nupkg
-**/[Pp]ackages/*
+Muziek-Game/*.nupkg
+Muziek-Game/**/[Pp]ackages/*
+
 # NuGet v3's project.json files produces more ignorable files
-*.nuget.props
-*.nuget.targets
+Muziek-Game/*.nuget.props
+Muziek-Game/*.nuget.targets
 
 # Windows image file caches
-Thumbs.db
-ehthumbs.db
+Muziek-Game/Thumbs.db
+Muziek-Game/ehthumbs.db
 
 # Folder config file
-Desktop.ini
+Muziek-Game/Desktop.ini
 
 # Recycle Bin used on file shares
-$RECYCLE.BIN/
+Muziek-Game/$RECYCLE.BIN/
 
 # User-specific files
-*.rsuser
-*.suo
-*.user
-*.userosscache
-*.userprefs
-*.sln.docstates
+Muziek-Game/*.rsuser
+Muziek-Game/*.suo
+Muziek-Game/*.user
+Muziek-Game/*.userosscache
+Muziek-Game/*.userprefs
+Muziek-Game/*.sln.docstates
 
 # Mono Auto Generated Files
-mono_crash.*
+Muziek-Game/mono_crash.*
 
 # Windows crash dumps
-*.stackdump
+Muziek-Game/*.stackdump
 
 # Windows event logs
-*.evtx
+Muziek-Game/*.evtx
 
 # Rider
-.idea/
-*.sln.iml
+Muziek-Game/.idea/
+Muziek-Game/*.sln.iml
 
 # Visual Studio caches and logs
-.vs/
-.vscode/
-*.VC.db
-*.VC.VC.opendb
+Muziek-Game/.vs/
+Muziek-Game/.vscode/
+Muziek-Game/*.VC.db
+Muziek-Game/*.VC.VC.opendb
 
 # Build log files
-*.log
-*.tlog
-*.tmp
-*.svclog
+Muziek-Game/*.log
+Muziek-Game/*.tlog
+Muziek-Game/*.tmp
+Muziek-Game/*.svclog
 
 # Auto-generated designer files (WPF, Windows Forms, etc.)
-*.g.*
-*.designer.cs
-*.dbmdl
-*.opendb
+Muziek-Game/*.g.*
+Muziek-Game/*.designer.cs
+Muziek-Game/*.dbmdl
+Muziek-Game/*.opendb
 
 # Web publishing
-.publish.xml
-.publishsettings
+Muziek-Game/.publish.xml
+Muziek-Game/.publishsettings
 
 # Coverage Results
-*.coverage
-*.coveragexml
+Muziek-Game/*.coverage
+Muziek-Game/*.coveragexml
 
 # SQL Server database files
-*.mdf
-*.ldf
+Muziek-Game/*.mdf
+Muziek-Game/*.ldf
 
 # Entity Framework migrations
-*_Migration.cs
+Muziek-Game/*_Migration.cs
 
 # JetBrains Rider project files
-.idea/
+Muziek-Game/.idea/
 
 # ASP.NET Scaffolding
-ScaffoldingReadMe.txt
+Muziek-Game/ScaffoldingReadMe.txt
 
 # Client-side libraries folder managed by LibMan
-libman.json
-wwwroot/lib/
+Muziek-Game/libman.json
+Muziek-Game/wwwroot/lib/
 
 # MSBuild files
-project.lock.json
-project.fragment.lock.json
+Muziek-Game/project.lock.json
+Muziek-Game/project.fragment.lock.json
 
 # npm packages folder
-node_modules/
+Muziek-Game/node_modules/
 
 # Cache files
-*.cache
+Muziek-Game/*.cache
