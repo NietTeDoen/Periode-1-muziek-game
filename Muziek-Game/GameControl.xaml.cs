@@ -8,7 +8,7 @@ using System.Windows.Media;
 
 namespace Muziek_Game
 {
-    public partial class GameControl
+    public partial class GameControl : UserControl
     {
         private List<Block> blocks; // Lijst om alle blokken op te slaan
         private PortalManager portalManager; // Beheerder voor portalen
@@ -42,7 +42,6 @@ namespace Muziek_Game
             characterManager = new CharacterManager(); // Initialiseer de character manager
 
             StartGame(); // Start het spel
-            //GameCanvas.Focus();
         }
 
         //Gekopieerd van Jan
