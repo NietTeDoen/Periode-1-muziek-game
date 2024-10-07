@@ -41,30 +41,31 @@ namespace Muziek_Game
             portalManager = new PortalManager(); // Initialiseer de portal manager
             characterManager = new CharacterManager(); // Initialiseer de character manager
 
-            StartGame(); // Start het spel
+            StartGame(1); // Start het spel
         }
 
-        //Gekopieerd van Jan
+        /// <summary>
+        /// Zorgt ervoor dat het character omhoog en omlaag kan bewegen
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ProcessInput(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Up)
             {
                 if (characterPositie[1] == 300)
-                //{
-                    //characterPositie[1] = 400;
                     characterManager.MoveTop();
-                //}
             }
             else if (e.Key == Key.Down)
             {
-                //if (characterPositie[1] == 400)
-                //{
-                    //characterPositie[1] = 300;
-                    characterManager.MoveBottom();
-                //}
+                characterManager.MoveBottom();
             }
         }
 
+        /// <summary>
+        /// Spawned alle blokken die passen bij het level
+        /// </summary>
+        /// <param name="levelIndex"></param>
         public void LoadLevel(int levelIndex)
         {
             if (levelIndex < 0 || levelIndex >= levels.Count) return;
@@ -101,12 +102,21 @@ namespace Muziek_Game
             portalManager.InitializePortal(GameCanvas, portalPositie);
             characterManager.InitializeCharacter(GameCanvas, characterPositie);
         }
-
-        public void StartGame()
+        
+        /// <summary>
+        /// Laad het level in
+        /// </summary>
+        /// <param name="level"></param>
+        public void StartGame(int level)
         {
-            LoadLevel(0); // Laad het eerste niveau
+            LoadLevel(level); // Laad het eerste niveau
         }
 
+        /// <summary>
+        /// De GameLoop zorgt voor de timing van het spel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void GameLoop(object sender, EventArgs e)
         {
             if (isPaused)
@@ -129,6 +139,10 @@ namespace Muziek_Game
             blocks.Add(block);
         }
 
+        /// <summary>
+        /// Update de locatie van de blokken
+        /// </summary>
+        /// <param name="deltaTime"></param>
         public void UpdateBlocks(double deltaTime)
         {
             for (int i = blocks.Count - 1; i >= 0; i--) // Achterwaarts itereren om veilig te verwijderen

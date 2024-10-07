@@ -7,6 +7,15 @@ internal class Block
     private double Speed;
     private Canvas GameCanvas;
 
+
+    /// <summary>
+    /// Constructor voor het blok
+    /// </summary>
+    /// <param name="canvas"></param>
+    /// <param name="starty"></param>
+    /// <param name="startx"></param>
+    /// <param name="firstrow"></param>
+    /// <param name="speed"></param>
     public Block(Canvas canvas, int starty, int startx, bool firstrow, double speed)
     {
         int width = 50;
@@ -28,6 +37,10 @@ internal class Block
         GameCanvas.Children.Add(BlockObj);
     }
 
+    /// <summary>
+    /// Functie om blokken te verplaatsen
+    /// </summary>
+    /// <param name="deltaTime"></param>
     public void MoveLeft(double deltaTime)
     {
         double newX = Canvas.GetLeft(BlockObj) - Speed * deltaTime; // Verplaats de blokken naar links

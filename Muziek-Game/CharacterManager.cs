@@ -15,6 +15,13 @@ namespace Muziek_Game
         private string[] animationFrames;
         private int currentFrame = 0;
 
+
+        /// <summary>
+        /// Maak Character aan en voeg toe aan het canvas
+        /// </summary>
+        /// <param name="gameCanvas"></param>
+        /// <param name="characterPositie"></param>
+        /// <returns></returns>
         public int InitializeCharacter(Canvas gameCanvas, int[] characterPositie)
         {
             try
@@ -57,6 +64,11 @@ namespace Muziek_Game
             }
         }
 
+        /// <summary>
+        /// Laden van Animaties en Definen van frames
+        /// </summary>
+        /// <param name="folderPath"></param>
+        /// <returns></returns>
         private string[] LoadAnimationFrames(string folderPath)
         {
             try
@@ -78,6 +90,9 @@ namespace Muziek_Game
             }
         }
 
+        /// <summary>
+        /// Start de Animatie
+        /// </summary>
         private void StartAnimation()
         {
             animationTimer = new DispatcherTimer();
