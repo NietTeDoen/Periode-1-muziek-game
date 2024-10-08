@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -11,6 +12,8 @@ namespace Muziek_Game
     public class CharacterManager
     {
         private Rectangle character;
+        public Rect weaponHitBoxRect = new Rect(50, 50, 50, 50);
+        public Rectangle weaponHitbox {  get; set; }
         private DispatcherTimer animationTimer;
         private string[] animationFrames;
         private int currentFrame = 0;
@@ -32,6 +35,13 @@ namespace Muziek_Game
                     Width = 250,
                     Height = 300,
                 };
+                //Maak de hitbox van het wapen aan
+                weaponHitbox = new Rectangle
+                {
+                    Width = 50,
+                    Height = 50,
+                    Fill = System.Windows.Media.Brushes.Blue
+                };
 
                 // Laad animatieframes vanuit de "Character Animation" map
                 string characterFolderPath = "pack://application:,,,/Assets/Character%20Animation/";
@@ -48,9 +58,12 @@ namespace Muziek_Game
                 // Positioneer het karakter op het canvas
                 Canvas.SetLeft(character, characterPositie[0]);
                 Canvas.SetTop(character, characterPositie[1]);
+                Canvas.SetLeft(weaponHitbox, characterPositie[0] + 250);
+                Canvas.SetTop(weaponHitbox, characterPositie[1] + 50);
 
                 // Voeg het karakter toe aan het canvas
                 gameCanvas.Children.Add(character);
+                gameCanvas.Children.Add(weaponHitbox);
 
                 // Start de animatie met een timer
                 StartAnimation();
@@ -112,15 +125,21 @@ namespace Muziek_Game
             imageBrush.ImageSource = new BitmapImage(new Uri(animationFrames[currentFrame], UriKind.Absolute));
             character.Fill = imageBrush;
         }
+        /// <summary>
+        /// Beweeg het karakter naar boven
+        /// </summary>
         public void MoveTop()
         {
-            //double newY = Canvas.GetLeft(BlockObj) - Speed * deltaTime; // Verplaats de blokken naar links
             Canvas.SetTop(character, 300);
+            Canvas.SetTop(weaponHitbox, 350);
         }
+        /// <summary>
+        /// Beweeg het karakter naar beneden
+        /// </summary>
         public void MoveBottom()
         {
-            //double newX = Canvas.GetLeft(BlockObj) - Speed * deltaTime; // Verplaats de blokken naar links
             Canvas.SetTop(character, 400);
+            Canvas.SetTop(weaponHitbox, 450);
         }
     }
 }

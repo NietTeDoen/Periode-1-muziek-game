@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Media;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Shapes;
 
 namespace Muziek_Game
 {
@@ -53,8 +55,7 @@ namespace Muziek_Game
         {
             if (e.Key == Key.Up)
             {
-                if (characterPositie[1] == 300)
-                    characterManager.MoveTop();
+                characterManager.MoveTop();
             }
             else if (e.Key == Key.Down)
             {
@@ -130,6 +131,8 @@ namespace Muziek_Game
             previousTime = currentTime;
 
             UpdateBlocks(deltaTime); // Update de blokken
+
+            HitDetection(); // Controleer of er een blok geraakt is
             GameCanvas.Focus();
         }
 
@@ -152,6 +155,22 @@ namespace Muziek_Game
                 if (Canvas.GetLeft(block.BlockObj) < -50) // Verwijder blokken die buiten het canvas zijn
                 {
                     blocks.RemoveAt(i);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Checkt of weaponHitbox overlapt met BlockObj en maakt het block oranje als test
+        /// </summary>
+        public void HitDetection()
+        {
+            Rect hitboxWeapon = new Rect(Canvas.GetLeft(characterManager.weaponHitbox), Canvas.GetTop(characterManager.weaponHitbox), 50, 50); // Maak een Rect aan op de plek van de Rectangle zodat het te vergelijken is
+            foreach (var block in blocks)
+            {
+                Rect hitboxBlock = new Rect(Canvas.GetLeft(block.BlockObj), Canvas.GetTop(block.BlockObj), 50, 50); //Maak een Rect aan op de plek van de Rectangle zodat het te vergelijken is
+                if (hitboxWeapon.IntersectsWith(hitboxBlock)) //Checkt bij elk blok of het kruist met de hitbox van het wapen
+                {
+                    block.BlockObj.Fill = System.Windows.Media.Brushes.Orange;
                 }
             }
         }
