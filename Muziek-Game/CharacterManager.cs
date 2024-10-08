@@ -13,7 +13,7 @@ namespace Muziek_Game
     {
         private Rectangle character;
         public Rect weaponHitBoxRect = new Rect(50, 50, 50, 50);
-        public Rectangle weaponHitbox {  get; set; }
+        public Rectangle weaponHitbox {  get; private set; }
         private DispatcherTimer animationTimer;
         private string[] animationFrames;
         private int currentFrame = 0;
