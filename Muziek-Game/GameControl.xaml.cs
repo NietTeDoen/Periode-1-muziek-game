@@ -133,7 +133,7 @@ namespace Muziek_Game
             UpdateBlocks(deltaTime); // Update de blokken
 
             HitDetection(); // Controleer of er een blok geraakt is
-            GameCanvas.Focus();
+            GameCanvas.Focus(); // Reset de focus om besturing te houden
         }
 
         public void SpawnBlock(int startY, int startX, bool firstRow)

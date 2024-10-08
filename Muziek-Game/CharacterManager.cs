@@ -12,7 +12,6 @@ namespace Muziek_Game
     public class CharacterManager
     {
         private Rectangle character;
-        public Rect weaponHitBoxRect = new Rect(50, 50, 50, 50);
         public Rectangle weaponHitbox {  get; private set; }
         private DispatcherTimer animationTimer;
         private string[] animationFrames;
