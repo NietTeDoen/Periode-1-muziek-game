@@ -1,4 +1,7 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Windows.Controls;
+using System.Windows.Media.Imaging;
+using System.Windows.Media;
 using System.Windows.Shapes;
 
 internal class Block
@@ -30,6 +33,15 @@ internal class Block
             Height = height,
             Fill = System.Windows.Media.Brushes.Red
         };
+
+        //Selecteer een willekeurig nummer tussen 1 en 3
+        Random random = new Random();
+        int randomNumber = random.Next(1, 4); // Voeg het nummer toe aan de randomNumber Int
+
+        //Voeg afbeeldingen toe aan de blokken en selecteer de afbeelding afhankelijk van randomNumber.
+        ImageBrush imageBrush = new ImageBrush();
+        imageBrush.ImageSource = new BitmapImage(new Uri("pack://application:,,,/Assets/Note"+ randomNumber +".png", UriKind.Absolute));
+        BlockObj.Fill = imageBrush;
 
         Canvas.SetLeft(BlockObj, startx);
         Canvas.SetTop(BlockObj, firstrow ? starty : starty - 50);
