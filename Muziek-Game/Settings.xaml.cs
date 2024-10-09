@@ -24,5 +24,25 @@ namespace Muziek_Game
             }
         }
 
+        private void Graphics_Checked(object sender, RoutedEventArgs e)
+        {
+                // Uncheck all other checkboxes when one is checked
+                if (sender == HighGraphics)
+                {
+                    MediumGraphics.IsChecked = false;
+                    LowGraphics.IsChecked = false;
+                }
+                else if (sender == MediumGraphics)
+                {
+                    HighGraphics.IsChecked = false;
+                    LowGraphics.IsChecked = false;
+                }
+                else if (sender == LowGraphics)
+                {
+                    HighGraphics.IsChecked = false;
+                    MediumGraphics.IsChecked = false;
+                }
+        }
+
     }
 }
