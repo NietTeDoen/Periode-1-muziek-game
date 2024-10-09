@@ -59,5 +59,16 @@ namespace Muziek_Game
                 mainWindow.MainContent.Content = new GameControl(); // Vervang het menu door de game
             }
         }
+
+        private void HighScore_Click(object sender, RoutedEventArgs e)
+        {
+            // Navigeren naar de HighScore pagina
+            var mainWindow = Window.GetWindow(this) as MainWindow;
+            if (mainWindow != null)
+            {
+                mainWindow.MainContent.Content = new HighScore(); // Zorg ervoor dat je een HighScore UserControl hebt
+            }
+        }
+
     }
 }
