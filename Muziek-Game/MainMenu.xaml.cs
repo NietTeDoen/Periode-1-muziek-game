@@ -1,15 +1,36 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace Muziek_Game
 {
     public partial class MainMenu : UserControl
     {
+        public MediaPlayer _mediaPlayer = new MediaPlayer();
+
         public MainMenu()
         {
             InitializeComponent();
+            PlayMusic();
         }
 
+        /// <summary>
+        /// Speelt muziek af
+        /// </summary>
+        public void PlayMusic()
+        {
+            _mediaPlayer = new MediaPlayer();
+
+            // Gebruik een reguliere bestands-URI
+            string musicPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", "muziek", "ABBA.mp3");
+            Uri musicUri = new Uri(musicPath);
+
+            _mediaPlayer.MediaFailed += (sender, e) => MessageBox.Show($"Error: {e.ErrorException.Message}");
+            _mediaPlayer.Volume = 1.0; // Maximaal volume
+            _mediaPlayer.Open(musicUri);
+            _mediaPlayer.Play();
+        }
         private void ProfileButton_Click(object sender, RoutedEventArgs e)
         {
             // Navigeren naar de profielpagina
