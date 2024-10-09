@@ -4,7 +4,5 @@
         Title="Menu" Height="720" Width="1280">
     <Grid>
         <ContentControl x:Name="MainContent" />
-        <Button Content="Play Music" Click="PlayMusic_Click" 
-                HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,639,0,0"/>
     </Grid>
 </Window>
