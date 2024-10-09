@@ -160,8 +160,11 @@
     <Resource Include="Assets\Character Animation\color4.png" />
     <Resource Include="Assets\Character Animation\color5.png" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Assets\muziek\" />
+    <Resource Include="Assets\muziek\ABBA.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
