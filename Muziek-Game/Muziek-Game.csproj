@@ -160,5 +160,8 @@
     <Resource Include="Assets\Character Animation\color4.png" />
     <Resource Include="Assets\Character Animation\color5.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets\muziek\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
