@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Muziek_Game
@@ -26,7 +27,9 @@ namespace Muziek_Game
 
         private void Graphics_Checked(object sender, RoutedEventArgs e)
         {
-                // Uncheck all other checkboxes when one is checked
+            // Delay execution using Dispatcher to ensure the UI is fully initialized
+            this.Dispatcher.BeginInvoke(new Action(() =>
+            {
                 if (sender == HighGraphics)
                 {
                     MediumGraphics.IsChecked = false;
@@ -42,7 +45,9 @@ namespace Muziek_Game
                     HighGraphics.IsChecked = false;
                     MediumGraphics.IsChecked = false;
                 }
+            }), System.Windows.Threading.DispatcherPriority.Background); //zorgt ervoor dat het pas wordt uitgevoerd als de UI volledig is geïnitialiseerd
         }
+
 
     }
 }

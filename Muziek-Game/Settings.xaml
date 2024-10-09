@@ -22,10 +22,13 @@
             <TextBlock Text="Video Settings" FontSize="20" FontWeight="Bold" Margin="0,0,0,20" HorizontalAlignment="Center"/>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <CheckBox x:Name="HighGraphics" Content="Hoog" FontSize="16" IsChecked="False" Margin="0,0,20,0" Checked="Graphics_Checked"/>
-                <CheckBox x:Name="MediumGraphics" Content="Gemiddeld" FontSize="16" IsChecked="True" Margin="0,0,20,0" Checked="Graphics_Checked"/>
+                <CheckBox x:Name="HighGraphics" Content="Hoog" FontSize="16" IsChecked="False" 
+              Margin="0,0,20,0" Checked="Graphics_Checked"/>
+                <CheckBox x:Name="MediumGraphics" Content="Gemiddeld" FontSize="16" IsChecked="True" 
+              Margin="0,0,20,0" Checked="Graphics_Checked"/>
                 <CheckBox x:Name="LowGraphics" Content="Laag" FontSize="16" IsChecked="False" Checked="Graphics_Checked"/>
             </StackPanel>
+
         </StackPanel>
 
         <!-- Other Settings Section -->
