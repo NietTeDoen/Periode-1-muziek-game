@@ -1,20 +1,24 @@
-﻿    <UserControl x:Class="Muziek_Game.GameControl"
+﻿<UserControl x:Class="Muziek_Game.GameControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             Height="720" Width="1280"
-             KeyDown="ProcessInput">
+             x:Name="GameControlUserControl"
+             Width="1280" Height="720">
+    <!-- Stel hier de gewenste hoogte en breedte in -->
+
     <Grid>
-        <Canvas x:Name="GameCanvas" Background="White" Focusable="True">
-            <!-- Game elementen worden hier toegevoegd -->
-        </Canvas>
+        <!-- Hoofd spelgebied -->
+        <Canvas x:Name="GameCanvas" Background="White" />
 
-        <!-- Pauze Menu -->
-        <StackPanel x:Name="PauseMenu" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button Content="Hervatten" Click="ResumeButton_Click" Width="200" Height="50" />
-            <Button Content="Terug naar hoofdmenu" Click="MainMenuButton_Click" Width="200" Height="50" />
-        </StackPanel>
+        <!-- Pauze menu -->
+        <Grid x:Name="PauseMenu" Visibility="Collapsed" Background="#80000000" VerticalAlignment="Center" HorizontalAlignment="Center" Width="300" Height="200">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock Text="Game Paused" FontSize="24" Foreground="White" Margin="10"/>
+                <Button Name="ResumeButton" Click="ResumeButton_Click" Content="Resume" Margin="10"/>
+                <Button Name="MainMenuButton" Click="MainMenuButton_Click" Content="Main Menu" Margin="10"/>
+            </StackPanel>
+        </Grid>
 
-        <!-- Pauzeerknop zichtbaar tijdens gameplay -->
-        <Button Content="Pauzeer" Click="PauseButton_Click" Width="100" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10"/>
+        <!-- Pauze knop -->
+        <Button Name="PauseButton" Click="PauseButton_Click" Content="Pause" Margin="10" VerticalAlignment="Top" HorizontalAlignment="Left"/>
     </Grid>
 </UserControl>
