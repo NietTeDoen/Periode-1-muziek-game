@@ -167,5 +167,10 @@
     <Resource Include="Assets\Character Animation\color4.png" />
     <Resource Include="Assets\Character Animation\color5.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Note1.png" />
+    <Resource Include="Assets\Note2.png" />
+    <Resource Include="Assets\Note3.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
