@@ -2,23 +2,60 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              Height="720" Width="1280">
-    <Grid>
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="400">
-            <TextBlock Text="Instellingen" FontSize="36" FontWeight="Bold" Margin="0,0,0,20" HorizontalAlignment="Center"/>
+    <Grid Background="#D4D3E5">
+        <!-- Light gray background -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
 
-            <TextBlock Text="Volume" FontSize="24" Margin="0,10,0,5"/>
-            <Slider x:Name="VolumeSlider" Minimum="0" Maximum="100" Value="50" TickFrequency="1" 
-                    IsSnapToTickEnabled="True" Width="300"/>
+        <!-- Title -->
+        <TextBlock Grid.ColumnSpan="2" Text="Instellingen" 
+                   FontSize="36" FontWeight="Bold" HorizontalAlignment="Center" 
+                   VerticalAlignment="Top" Margin="0,20,0,0"/>
 
-            <TextBlock Text="Muziek aan/uit" FontSize="24" Margin="0,20,0,5"/>
-            <CheckBox x:Name="MusicToggle" Content="Muziek Ingeschakeld" IsChecked="True" 
-                       FontSize="20" Margin="0,0,0,10"/>
+        <!-- Video Settings Section -->
+        <StackPanel Grid.Column="0" Grid.Row="0"  VerticalAlignment="Center" HorizontalAlignment="center" Margin="0,0,20,0">
+            <TextBlock Text="Video Settings" FontSize="20" FontWeight="Bold" Margin="0,0,0,20" HorizontalAlignment="Center"/>
 
-            <TextBlock Text="Bewegende Achtergrond" FontSize="24" Margin="0,20,0,5"/>
-            <CheckBox x:Name="BackgroundToggle" Content="Achtergrond Ingeschakeld" IsChecked="True" 
-                       FontSize="20" Margin="0,0,0,10"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <CheckBox x:Name="HighGraphics" Content="Hoog" FontSize="16" IsChecked="False" 
+              Margin="0,0,20,0" Checked="Graphics_Checked"/>
+                <CheckBox x:Name="MediumGraphics" Content="Gemiddeld" FontSize="16" IsChecked="True" 
+              Margin="0,0,20,0" Checked="Graphics_Checked"/>
+                <CheckBox x:Name="LowGraphics" Content="Laag" FontSize="16" IsChecked="False" Checked="Graphics_Checked"/>
+            </StackPanel>
 
-            <Button Content="Terug" Click="BackButton_Click"/>
         </StackPanel>
+
+        <!-- Other Settings Section -->
+        <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20,-100,0,0">
+            <TextBlock Text="Overige Settings" FontSize="20" FontWeight="Bold" Margin="0,0,0,20" HorizontalAlignment="Center"/>
+
+            <!-- Music Volume -->
+            <TextBlock Text="Muziek Volume" FontSize="16" Margin="0,0,0,5"/>
+            <Slider x:Name="MusicVolumeSlider" Minimum="0" Maximum="100" Value="100" Width="250" TickFrequency="10" 
+                    IsSnapToTickEnabled="True"/>
+
+            <!-- FPS Limiter -->
+            <TextBlock Text="FPS Limitering" FontSize="16" Margin="0,20,0,5"/>
+            <Slider x:Name="FPSLimitSlider" Minimum="30" Maximum="144" Value="60" Width="250" TickFrequency="1" 
+                    IsSnapToTickEnabled="True"/>
+
+            <!-- Audio Device -->
+            <TextBlock Text="Audio Apparaat" FontSize="16" Margin="0,20,0,5"/>
+            <ComboBox x:Name="AudioDeviceComboBox" Width="250">
+                <ComboBoxItem Content="Default Audio Device" IsSelected="True"/>
+                <ComboBoxItem Content="Speakers" />
+                <ComboBoxItem Content="Headphones" />
+            </ComboBox>
+        </StackPanel>
+
+        <!-- Back Button -->
+        <Button Grid.Row="1" Content="Back" Width="100" Height="40" HorizontalAlignment="Center" VerticalAlignment="Bottom" 
+                Grid.ColumnSpan="2" Margin="0,0,0,60" Click="BackButton_Click"/>
     </Grid>
 </UserControl>

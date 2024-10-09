@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Muziek_Game
@@ -23,6 +24,30 @@ namespace Muziek_Game
                 MessageBox.Show("Hoofdvenster niet gevonden.");
             }
         }
+
+        private void Graphics_Checked(object sender, RoutedEventArgs e)
+        {
+            // Delay execution using Dispatcher to ensure the UI is fully initialized
+            this.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                if (sender == HighGraphics)
+                {
+                    MediumGraphics.IsChecked = false;
+                    LowGraphics.IsChecked = false;
+                }
+                else if (sender == MediumGraphics)
+                {
+                    HighGraphics.IsChecked = false;
+                    LowGraphics.IsChecked = false;
+                }
+                else if (sender == LowGraphics)
+                {
+                    HighGraphics.IsChecked = false;
+                    MediumGraphics.IsChecked = false;
+                }
+            }), System.Windows.Threading.DispatcherPriority.Background); //zorgt ervoor dat het pas wordt uitgevoerd als de UI volledig is geïnitialiseerd
+        }
+
 
     }
 }
