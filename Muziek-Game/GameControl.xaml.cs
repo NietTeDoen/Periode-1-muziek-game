@@ -21,7 +21,7 @@ namespace Muziek_Game
         private long previousTime; // Tijd van de vorige frame
         private List<Level> levels; // Lijst van niveaus
         private bool isPaused = false; // Houdt bij of het spel gepauzeerd is
-
+        private int HitCount = 0;
         public GameControl()
         {
             InitializeComponent();
@@ -53,8 +53,6 @@ namespace Muziek_Game
         /// <param name="e"></param>
         private void ProcessInput(object sender, KeyEventArgs e)
         {
-            if (isPaused) return; // Geen input verwerken als het spel gepauzeerd is
-
             if (e.Key == Key.Up)
             {
                 characterManager.MoveTop();
@@ -105,7 +103,7 @@ namespace Muziek_Game
             portalManager.InitializePortal(GameCanvas, portalPositie);
             characterManager.InitializeCharacter(GameCanvas, characterPositie);
         }
-
+        
         /// <summary>
         /// Laad het level in
         /// </summary>
@@ -169,14 +167,27 @@ namespace Muziek_Game
             Rect hitboxWeapon = new Rect(Canvas.GetLeft(characterManager.weaponHitbox), Canvas.GetTop(characterManager.weaponHitbox), 50, 50); // Maak een Rect aan op de plek van de Rectangle zodat het te vergelijken is
             foreach (var block in blocks)
             {
-                Rect hitboxBlock = new Rect(Canvas.GetLeft(block.BlockObj), Canvas.GetTop(block.BlockObj), 50, 50); // Maak een Rect aan op de plek van de Rectangle zodat het te vergelijken is
-                if (hitboxWeapon.IntersectsWith(hitboxBlock)) // Checkt bij elk blok of het kruist met de hitbox van het wapen
+                Rect hitboxBlock = new Rect(Canvas.GetLeft(block.BlockObj), Canvas.GetTop(block.BlockObj), 50, 50); //Maak een Rect aan op de plek van de Rectangle zodat het te vergelijken is
+                if (hitboxWeapon.IntersectsWith(hitboxBlock)) //Checkt bij elk blok of het kruist met de hitbox van het wapen
                 {
                     block.BlockObj.Fill = System.Windows.Media.Brushes.Orange;
+                    HitCount++;
+                    Score(HitCount);
                 }
             }
         }
-
+        /// <summary>
+        /// Berekent score
+        /// </summary>
+        /// <param name="hits"></param>
+        /// <returns></returns>
+        public int Score(int hits)
+        {
+            int score = hits * 10; 
+            Console.WriteLine(score); 
+            return hits;
+        }
+        
         // Pauze functie
         public void PauseGame()
         {
@@ -195,8 +206,6 @@ namespace Muziek_Game
         {
             PauseGame();
             PauseMenu.Visibility = Visibility.Visible; // Toon het pauze menu
-            GameCanvas.IsEnabled = false; // Zet de game canvas uit voor interactie
-            GameCanvas.Focusable = false; // Ontkoppel de focus van de canvas
         }
 
         // Hervat-knop
@@ -204,9 +213,6 @@ namespace Muziek_Game
         {
             ResumeGame();
             PauseMenu.Visibility = Visibility.Collapsed; // Verberg het pauze menu
-            GameCanvas.IsEnabled = true; // Zet de game canvas weer aan
-            GameCanvas.Focusable = true; // Koppel de focus weer aan de canvas
-            GameCanvas.Focus(); // Herstel de focus
         }
 
         private void MainMenuButton_Click(object sender, RoutedEventArgs e)
