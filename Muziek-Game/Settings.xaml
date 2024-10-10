@@ -37,8 +37,9 @@
 
             <!-- Music Volume -->
             <TextBlock Text="Muziek Volume" FontSize="16" Margin="0,0,0,5"/>
-            <Slider x:Name="MusicVolumeSlider" Minimum="0" Maximum="100" Value="100" Width="250" TickFrequency="10" 
-                    IsSnapToTickEnabled="True"/>
+            <Slider x:Name="VolumeSlider" Minimum="0" Maximum="100" Value="50" TickFrequency="1"
+        IsSnapToTickEnabled="True" Width="300" ValueChanged="VolumeSlider_ValueChanged"/>
+
 
             <!-- FPS Limiter -->
             <TextBlock Text="FPS Limitering" FontSize="16" Margin="0,20,0,5"/>
