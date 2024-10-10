@@ -37,7 +37,7 @@ namespace Muziek_Game
             string musicPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", "muziek", "ABBA.mp3");
             Uri musicUri = new Uri(musicPath);
 
-            _mediaPlayer.Volume = 1.0; // Maximaal volume
+            _mediaPlayer.Volume = 0.5; // Maximaal volume
             _mediaPlayer.Open(musicUri);
             _mediaPlayer.Play();
         }
