@@ -6,13 +6,24 @@ using System.Windows.Media;
 namespace Muziek_Game
 {
     public partial class MainMenu : UserControl
-    {
+    { 
         public MediaPlayer _mediaPlayer = new MediaPlayer();
 
         public MainMenu()
         {
             InitializeComponent();
+            InitializeMediaPlayer();
             PlayMusic();
+        }
+
+        /// <summary>
+        /// Initialiseer de MediaPlayer
+        /// </summary>
+        private void InitializeMediaPlayer()
+        {
+            _mediaPlayer = new MediaPlayer();
+            _mediaPlayer.MediaEnded += MediaPlayer_MediaEnded;
+            _mediaPlayer.MediaFailed += MediaPlayer_MediaFailed;
         }
 
         /// <summary>
@@ -26,11 +37,22 @@ namespace Muziek_Game
             string musicPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", "muziek", "ABBA.mp3");
             Uri musicUri = new Uri(musicPath);
 
-            _mediaPlayer.MediaFailed += (sender, e) => MessageBox.Show($"Error: {e.ErrorException.Message}");
             _mediaPlayer.Volume = 1.0; // Maximaal volume
             _mediaPlayer.Open(musicUri);
             _mediaPlayer.Play();
         }
+
+        private void MediaPlayer_MediaEnded(object sender, EventArgs e)
+        {
+            // Stop de muziek nadat het afspelen is voltooid
+            _mediaPlayer.Stop();
+        }
+
+        private void MediaPlayer_MediaFailed(object sender, ExceptionEventArgs e)
+        {
+            MessageBox.Show($"Error: {e.ErrorException.Message}");
+        }
+
         private void ProfileButton_Click(object sender, RoutedEventArgs e)
         {
             // Navigeren naar de profielpagina
