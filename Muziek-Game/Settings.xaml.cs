@@ -25,6 +25,11 @@ namespace Muziek_Game
             }
         }
 
+        private void VolumeSlider_ValueChanged(object sender, RoutedEventArgs e)
+        {
+            //Funcite gemaakt om error op te lossen. Moet nog gevuld worden
+        }
+
         private void Graphics_Checked(object sender, RoutedEventArgs e)
         {
             // Delay execution using Dispatcher to ensure the UI is fully initialized

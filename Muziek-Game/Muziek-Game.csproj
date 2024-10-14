@@ -95,6 +95,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="AudioManager.cs" />
     <Compile Include="Block.cs" />
     <Compile Include="CharacterManager.cs" />
     <Compile Include="ModsMenu.xaml.cs">
