@@ -17,6 +17,8 @@
                 <Button Name="MainMenuButton" Click="MainMenuButton_Click" Content="Main Menu" Margin="10"/>
             </StackPanel>
         </Grid>
+        
+        <Label x:Name="scoreLabel" Content="Score: 0" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="25" Margin="0,0,85,0" />
 
         <!-- Pauze knop -->
         <Button Name="PauseButton" Click="PauseButton_Click" Content="Pause" Margin="10" VerticalAlignment="Top" HorizontalAlignment="Left"/>

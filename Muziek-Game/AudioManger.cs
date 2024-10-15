@@ -8,8 +8,6 @@ public class AudioManager
     // Zorg ervoor dat er slechts één MediaPlayer is
     public static MediaPlayer GetMediaPlayer()
     {
-        if (_mediaPlayer == null)
-        { 
         _mediaPlayer = new MediaPlayer();
 
         // Gebruik een reguliere bestands-URI
@@ -19,17 +17,13 @@ public class AudioManager
         _mediaPlayer.Volume = 0.5; // Maximaal volume
         _mediaPlayer.Open(musicUri);
         _mediaPlayer.Play();
-        }
 
         return _mediaPlayer;
     }
-    public void VolumeChange(double newVolume)
+
+    public int VolumeChange(double volume)
     {
-        if (_mediaPlayer != null)
-        {
-            _mediaPlayer.Volume = newVolume;
-        }
+        _mediaPlayer.Volume = volume;
+        return 1;
     }
-}   
-
-
+}
