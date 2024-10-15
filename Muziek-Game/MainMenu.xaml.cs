@@ -8,6 +8,7 @@ namespace Muziek_Game
     public partial class MainMenu : UserControl
     { 
         public MediaPlayer _mediaPlayer = new MediaPlayer();
+        private AudioManager _audioManager = new AudioManager();
 
         public MainMenu()
         {
@@ -100,6 +101,8 @@ namespace Muziek_Game
             if (mainWindow != null)
             {
                 mainWindow.MainContent.Content = new GameControl(); // Vervang het menu door de game
+                _audioManager.PauseMedia();
+                
             }
         }
 
