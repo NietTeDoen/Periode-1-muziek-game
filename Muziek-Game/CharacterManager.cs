@@ -13,7 +13,7 @@ namespace Muziek_Game
     public class CharacterManager
     {
         private Rectangle character;
-        public Rectangle weaponHitbox {  get; private set; }
+        public Rectangle weaponHitbox { get; private set; }
         private DispatcherTimer animationTimer;
         private string[] animationFrames;
         private int currentFrame = 0;
@@ -128,7 +128,7 @@ namespace Muziek_Game
         /// <summary>
         /// Beweeg het karakter naar boven
         /// </summary>
-        public void MoveTop(Canvas canvas)
+        public void MoveTop()
         {
             Canvas.SetTop(character, 300);
             Canvas.SetTop(weaponHitbox, 350);
@@ -136,21 +136,10 @@ namespace Muziek_Game
         /// <summary>
         /// Beweeg het karakter naar beneden
         /// </summary>
-        public void MoveBottom(Canvas canvas)
+        public void MoveBottom()
         {
             Canvas.SetTop(character, 400);
             Canvas.SetTop(weaponHitbox, 450);
-        }
-        public void CharacterSend(object sender, KeyEventArgs e, Canvas canvas)
-        {
-            if (e.Key == Key.Up)
-            {
-                MoveTop(canvas);
-            }
-            else if (e.Key == Key.Down)
-            {
-                MoveBottom(canvas);
-            }
         }
     }
 }

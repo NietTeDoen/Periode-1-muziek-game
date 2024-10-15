@@ -66,11 +66,11 @@ namespace Muziek_Game
         {
             if (e.Key == Key.Up)
             {
-                characterManager.MoveTop( GameCanvas);
+                characterManager.MoveTop();
             }
             else if (e.Key == Key.Down)
             {
-                characterManager.MoveBottom( GameCanvas);
+                characterManager.MoveBottom();
             }
         }
 
