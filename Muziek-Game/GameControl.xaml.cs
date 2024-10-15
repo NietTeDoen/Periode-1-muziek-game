@@ -35,6 +35,11 @@ namespace Muziek_Game
             CompositionTarget.Rendering += GameLoop; // Registreer de game loop
 
             // Initialiseer de niveaus
+            // 0 is geen blokken
+            // 1 is een blok in de bovenste rij
+            // 2 is een blok in de onderste rij
+            // 3 is een blok in zowel de bovenste als onderste rij
+            // het eerste cijfer bepaald de snelheid van het level
             levels = new List<Level>
             {
                 new Level(120, 1, 500, new int[] { 1, 0, 1, 2, 3, 1, 0, 0, 2, 1, 3, 1 }), // Niveau 1
@@ -109,14 +114,14 @@ namespace Muziek_Game
                     case 0:
                         break; // Geen blokken
                     case 1:
-                        SpawnBlock(upperRowY, startX, true); // Bovenste rij
+                        SpawnBlock(upperRowY, startX, true, levelIndex); // Bovenste rij
                         break;
                     case 2:
-                        SpawnBlock(lowerRowY, startX, false); // Onderste rij
+                        SpawnBlock(lowerRowY, startX, false, levelIndex); // Onderste rij
                         break;
                     case 3:
-                        SpawnBlock(upperRowY, startX, true); // Bovenste rij
-                        SpawnBlock(lowerRowY, startX, false); // Onderste rij
+                        SpawnBlock(upperRowY, startX, true, levelIndex); // Bovenste rij
+                        SpawnBlock(lowerRowY, startX, false, levelIndex); // Onderste rij
                         break;
                 }
             }
@@ -158,9 +163,10 @@ namespace Muziek_Game
             GameCanvas.Focus(); // Reset de focus om besturing te houden
         }
 
-        public void SpawnBlock(int startY, int startX, bool firstRow)
+        public void SpawnBlock(int startY, int startX, bool firstRow, int levelIndex)
         {
-            Block block = new Block(GameCanvas, startY, startX, firstRow, 100); // Snelheid = 100
+            Level currentLevel = levels[levelIndex];
+            Block block = new Block(GameCanvas, startY, startX, firstRow, currentLevel.Tempo); // Snelheid = 100
             blocks.Add(block);
         }
 
