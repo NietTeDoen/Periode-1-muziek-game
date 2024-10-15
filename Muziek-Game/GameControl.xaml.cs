@@ -74,6 +74,15 @@ namespace Muziek_Game
             {
                 characterManager.MoveBottom();
             }
+            else if (e.Key == Key.Escape)
+            {
+                if (isPaused)
+                {
+                    ResumeGame();
+                }else{
+                    PauseGame();
+                }
+            }
         }
 
         /// <summary>
@@ -225,6 +234,7 @@ namespace Muziek_Game
         public void PauseGame()
         {
             isPaused = true; // Set de pauzestatus
+            PauseMenu.Visibility = Visibility.Visible; // Toon het pauze menu
         }
 
         // Hervat het spel
@@ -232,20 +242,19 @@ namespace Muziek_Game
         {
             isPaused = false; // Set de pauzestatus terug naar false
             previousTime = stopwatch.ElapsedMilliseconds; // Reset de tijd om te voorkomen dat de blokken teleporteren
+            PauseMenu.Visibility = Visibility.Collapsed; // Verberg het pauze menu
         }
 
         // Pauze-knop
         private void PauseButton_Click(object sender, RoutedEventArgs e)
         {
             PauseGame();
-            PauseMenu.Visibility = Visibility.Visible; // Toon het pauze menu
         }
 
         // Hervat-knop
         private void ResumeButton_Click(object sender, RoutedEventArgs e)
         {
             ResumeGame();
-            PauseMenu.Visibility = Visibility.Collapsed; // Verberg het pauze menu
         }
 
         private void MainMenuButton_Click(object sender, RoutedEventArgs e)
