@@ -2,6 +2,7 @@
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
@@ -127,7 +128,7 @@ namespace Muziek_Game
         /// <summary>
         /// Beweeg het karakter naar boven
         /// </summary>
-        public void MoveTop()
+        public void MoveTop(Canvas canvas)
         {
             Canvas.SetTop(character, 300);
             Canvas.SetTop(weaponHitbox, 350);
@@ -135,10 +136,21 @@ namespace Muziek_Game
         /// <summary>
         /// Beweeg het karakter naar beneden
         /// </summary>
-        public void MoveBottom()
+        public void MoveBottom(Canvas canvas)
         {
             Canvas.SetTop(character, 400);
             Canvas.SetTop(weaponHitbox, 450);
+        }
+        public void CharacterSend(object sender, KeyEventArgs e, Canvas canvas)
+        {
+            if (e.Key == Key.Up)
+            {
+                MoveTop(canvas);
+            }
+            else if (e.Key == Key.Down)
+            {
+                MoveBottom(canvas);
+            }
         }
     }
 }

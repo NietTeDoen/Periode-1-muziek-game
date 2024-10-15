@@ -43,7 +43,18 @@ namespace Muziek_Game
             portalManager = new PortalManager(); // Initialiseer de portal manager
             characterManager = new CharacterManager(); // Initialiseer de character manager
 
-            StartGame(1); // Start het spel
+            StartGame(0); // Start het spel. Int is de level die gekozen word.
+        }
+        /// <summary>
+        /// Zorgt er voor dat de ProcessInput de windows meekrijgt als variabele zodat het buiten de gamecontrol bruikbaar is.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+
+        private void ProcessInput_Loaded(object sender, RoutedEventArgs e)
+        {
+            var window = Window.GetWindow(this);
+            window.KeyDown += ProcessInput;
         }
 
         /// <summary>
@@ -55,11 +66,11 @@ namespace Muziek_Game
         {
             if (e.Key == Key.Up)
             {
-                characterManager.MoveTop();
+                characterManager.MoveTop( GameCanvas);
             }
             else if (e.Key == Key.Down)
             {
-                characterManager.MoveBottom();
+                characterManager.MoveBottom( GameCanvas);
             }
         }
 

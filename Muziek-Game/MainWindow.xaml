@@ -2,10 +2,10 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="BeatBound" Height="720" Width="1280" Focusable="True"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen" >
     
     <Grid>
         <!-- ContentControl om verschillende UserControls in te laden -->
-        <ContentControl x:Name="MainContent"/>
+        <ContentControl x:Name="MainContent" />
     </Grid>
 </Window>
