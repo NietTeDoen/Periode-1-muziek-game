@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 
 namespace Muziek_Game
 {
     public partial class Settings : UserControl
     {
+        private AudioManager audioManager = new AudioManager();
         public Settings()
         {
             InitializeComponent();
@@ -24,11 +26,14 @@ namespace Muziek_Game
                 MessageBox.Show("Hoofdvenster niet gevonden.");
             }
         }
-
-        private void VolumeSlider_ValueChanged(object sender, RoutedEventArgs e)
+        private void VolumeSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs <double> e)
         {
-            //Funcite gemaakt om error op te lossen. Moet nog gevuld worden
-        }
+            var window = Window.GetWindow(this) as MainWindow;
+            if (window != null)
+            {
+                audioManager.VolumeChange(e.NewValue / 100);
+            }
+        } 
 
         private void Graphics_Checked(object sender, RoutedEventArgs e)
         {
