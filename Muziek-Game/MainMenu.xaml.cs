@@ -13,7 +13,7 @@ namespace Muziek_Game
         {
             InitializeComponent();
             InitializeMediaPlayer();
-            _mediaPlayer = AudioManager.GetMediaPlayer();
+            _mediaPlayer = AudioManager.GetMediaPlayer(); 
         }
 
         /// <summary>

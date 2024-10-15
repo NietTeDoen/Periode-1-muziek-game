@@ -22,6 +22,8 @@ namespace Muziek_Game
         private List<Level> levels; // Lijst van niveaus
         private bool isPaused = false; // Houdt bij of het spel gepauzeerd is
         private int HitCount = 0;
+        private int score = 0;
+        public Label ScoreLabel;
         public GameControl()
         {
             InitializeComponent();
@@ -172,20 +174,40 @@ namespace Muziek_Game
                 {
                     block.BlockObj.Fill = System.Windows.Media.Brushes.Orange;
                     HitCount++;
-                    Score(HitCount);
+                    score = Score(HitCount);
+                    DisplayScore();
                 }
             }
         }
+
         /// <summary>
         /// Berekent score
         /// </summary>
-        /// <param name="hits"></param>
+        /// <param name="Hitcount"></param>
         /// <returns></returns>
-        public int Score(int hits)
+        public int Score(int Hitcount)
         {
-            int score = hits * 10; 
-            Console.WriteLine(score); 
-            return hits;
+            int score = Hitcount * 1; 
+            Console.WriteLine("score: " + score); 
+            return score;
+        }
+
+        private void DisplayScore()
+        {
+            scoreLabel.Content = "Score: " + score.ToString();
+
+            if (score >= 1000)
+            {
+                scoreLabel.Foreground = new SolidColorBrush(Colors.Green); // Groen als de score 100 of hoger is
+            }
+            else if (score >= 100)
+            {
+                scoreLabel.Foreground = new SolidColorBrush(Colors.Orange); // Oranje bij een score tussen 50 en 100
+            }
+            else
+            {
+                scoreLabel.Foreground = new SolidColorBrush(Colors.Red); // Rood als de score lager dan 50 is
+            }
         }
         
         // Pauze functie
