@@ -12,7 +12,7 @@ namespace Muziek_Game
 {
     public class CharacterManager
     {
-        private Rectangle character;
+        public Rectangle character { get; private set; }
         public Rectangle weaponHitbox { get; private set; }
         private DispatcherTimer animationTimer;
         private string[] animationFrames;

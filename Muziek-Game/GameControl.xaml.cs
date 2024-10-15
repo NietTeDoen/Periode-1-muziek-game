@@ -23,6 +23,7 @@ namespace Muziek_Game
         private bool isPaused = false; // Houdt bij of het spel gepauzeerd is
         private int HitCount = 0;
         private int score = 0;
+        private System.Windows.Point AwayLocation { get; set; } // De locatie waar de blokjes heen gaan als ze geraakt zijn.
         public Label ScoreLabel;
         public GameControl()
         {
@@ -146,6 +147,7 @@ namespace Muziek_Game
             UpdateBlocks(deltaTime); // Update de blokken
 
             HitDetection(); // Controleer of er een blok geraakt is
+            MissDetection(); // Controleer of er een blok gemist is
             GameCanvas.Focus(); // Reset de focus om besturing te houden
         }
 
@@ -180,14 +182,51 @@ namespace Muziek_Game
             Rect hitboxWeapon = new Rect(Canvas.GetLeft(characterManager.weaponHitbox), Canvas.GetTop(characterManager.weaponHitbox), 50, 50); // Maak een Rect aan op de plek van de Rectangle zodat het te vergelijken is
             foreach (var block in blocks)
             {
-                Rect hitboxBlock = new Rect(Canvas.GetLeft(block.BlockObj), Canvas.GetTop(block.BlockObj), 50, 50); //Maak een Rect aan op de plek van de Rectangle zodat het te vergelijken is
+                Rect hitboxBlock = new Rect(Canvas.GetLeft(block.BlockObj), Canvas.GetTop(block.BlockObj), block.BlockObj.ActualHeight , block.BlockObj.ActualWidth); //Maak een Rect aan op de plek van de Rectangle zodat het te vergelijken is
                 if (hitboxWeapon.IntersectsWith(hitboxBlock)) //Checkt bij elk blok of het kruist met de hitbox van het wapen
                 {
-                    block.BlockObj.Fill = System.Windows.Media.Brushes.Orange;
-                    HitCount++;
-                    score = Score(HitCount);
-                    DisplayScore();
+                    if (block.hit == 0)
+                    {
+                        block.BlockObj.Fill = System.Windows.Media.Brushes.Green;
+                        //block.Delete();
+                        block.IsHit();
+                        HitDetected(true);
+                    }
                 }
+            }
+        }
+        /// <summary>
+        /// Checkt of BlockObj overlapt met een onzichtbare hitbox achter het karakter om een miss te herkennen.
+        /// </summary>
+        public void MissDetection()
+        {
+            Rect hitboxMiss = new Rect(50, 0, 10, 5000); //Maak een onzichtbare Rect achter het karakter
+            foreach (var block in blocks)
+            {
+                Rect hitboxBlock = new Rect(Canvas.GetLeft(block.BlockObj), Canvas.GetTop(block.BlockObj), block.BlockObj.ActualHeight, block.BlockObj.ActualWidth); //Maak een Rect aan op de plek van de Rectangle zodat het te vergelijken is
+                if (hitboxMiss.IntersectsWith(hitboxBlock)) //Checkt bij elk blok of het kruist met de hitbox van het "miss" punt
+                {
+                    if (block.hit == 0)
+                    {
+                        block.BlockObj.Fill = System.Windows.Media.Brushes.Red;
+                        MissDetected(true);
+                    }
+                }
+            }
+        }
+        public void HitDetected(bool hit)
+        {   if (hit == true)
+            {
+                HitCount++;
+                score = Score(HitCount);
+                DisplayScore();
+            }
+        }
+        public void MissDetected(bool miss)
+        {
+            if (miss == true)
+            {
+                // Er is een miss gedetecteerd. Voer deze code uit.
             }
         }
 

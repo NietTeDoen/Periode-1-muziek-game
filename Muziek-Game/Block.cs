@@ -9,6 +9,7 @@ internal class Block
     public Rectangle BlockObj { get; private set; }
     private double Speed;
     private Canvas GameCanvas;
+    public int hit = 0;
 
 
     /// <summary>
@@ -55,7 +56,15 @@ internal class Block
     /// <param name="deltaTime"></param>
     public void MoveLeft(double deltaTime)
     {
-        double newX = Canvas.GetLeft(BlockObj) - Speed * deltaTime; // Verplaats de blokken naar links
-        Canvas.SetLeft(BlockObj, newX);
+            double newX = Canvas.GetLeft(BlockObj) - Speed * deltaTime; // Verplaats de blokken naar links
+            Canvas.SetLeft(BlockObj, newX);
+    }
+    public void Delete()
+    {
+        GameCanvas.Children.Remove(BlockObj);
+    }
+    public void IsHit()
+    {
+        hit = 1;
     }
 }
