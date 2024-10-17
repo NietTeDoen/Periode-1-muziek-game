@@ -44,8 +44,8 @@ namespace Muziek_Game
             levels = new List<Level>
             {
                 new Level(120, 1, 500, new int[] { 1, 0, 1, 2, 3, 1, 0, 0, 2, 1, 3, 1 }), // Niveau 1
-                new Level(180, 2, 400, new int[] { 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 2, 3, 2, 3, 2, 2, 1 }), // Niveau 2
-                new Level(640, 3, 300, new int[] { 1, 1, 0, 2, 2, 1, 2, 1, 2, 1, 2, 3, 1, 3,2, 1, 2, 1, 2, 2, 2, 1 }), // Niveau 3
+                new Level(180, 2, 400, new int[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, }), // Niveau 2
+                new Level(240, 3, 300, new int[] { 1, 1, 0, 2, 2, 1, 2, 1, 2, 1, 2, 3, 1, 3,2, 1, 2, 1, 2, 2, 2, 1 }), // Niveau 3
             };
 
             portalManager = new PortalManager(); // Initialiseer de portal manager
