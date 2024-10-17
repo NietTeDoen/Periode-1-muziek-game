@@ -332,7 +332,8 @@ namespace Muziek_Game
         public void PauseGame()
         {
             isPaused = true; // Set de pauzestatus
-            PauseMenu.Visibility = Visibility.Visible; // Toon het pauze menu
+            PauseMenu.Visibility = Visibility.Visible; // Toon het pauze men
+            _mediaPlayer.Pause(); // Pauzeer de muziek
         }
 
         // Hervat het spel
@@ -341,6 +342,7 @@ namespace Muziek_Game
             isPaused = false; // Set de pauzestatus terug naar false
             previousTime = stopwatch.ElapsedMilliseconds; // Reset de tijd om te voorkomen dat de blokken teleporteren
             PauseMenu.Visibility = Visibility.Collapsed; // Verberg het pauze menu
+            _mediaPlayer.Play(); // Hervat de muziek
         }
 
         // Pauze-knop
