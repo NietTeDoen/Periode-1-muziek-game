@@ -45,7 +45,7 @@ namespace Muziek_Game
             {
                 new Level(120, 1, 500, new int[] { 1, 0, 1, 2, 3, 1, 0, 0, 2, 1, 3, 1 }), // Niveau 1
                 new Level(180, 2, 400, new int[] { 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 2, 3, 2, 3, 2, 2, 1 }), // Niveau 2
-                new Level(140, 3, 300, new int[] { 1, 1, 0, 2, 2 }), // Niveau 3
+                new Level(640, 3, 300, new int[] { 1, 1, 0, 2, 2, 1, 2, 1, 2, 1, 2, 3, 1, 3,2, 1, 2, 1, 2, 2, 2, 1 }), // Niveau 3
             };
 
             portalManager = new PortalManager(); // Initialiseer de portal manager
@@ -300,6 +300,16 @@ namespace Muziek_Game
         private void ResumeButton_Click(object sender, RoutedEventArgs e)
         {
             ResumeGame();
+        }
+
+
+        private void LevelButton_Click(object sender, RoutedEventArgs e)
+        {
+            var window = Window.GetWindow(this) as MainWindow; // Zorg ervoor dat je een referentie hebt naar MainWindow
+            if (window != null)
+            {
+                window.MainContent.Content = new LevelSelector(); // MainMenu moet een UserControl zijn
+            }
         }
 
         private void MainMenuButton_Click(object sender, RoutedEventArgs e)

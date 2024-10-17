@@ -14,6 +14,7 @@
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
                 <TextBlock Text="Game Paused" FontSize="24" Foreground="White" Margin="10"/>
                 <Button Name="ResumeButton" Click="ResumeButton_Click" Content="Resume" Margin="10"/>
+                <Button Name="LevelSelectorButton" Click="LevelButton_Click" Content="Level Selection" Margin="10"/>
                 <Button Name="MainMenuButton" Click="MainMenuButton_Click" Content="Main Menu" Margin="10"/>
             </StackPanel>
         </Grid>
