@@ -25,7 +25,7 @@ namespace Muziek_Game
         private int score = 0;
         private System.Windows.Point AwayLocation { get; set; } // De locatie waar de blokjes heen gaan als ze geraakt zijn.
         public Label ScoreLabel;
-        public GameControl()
+        public GameControl(int level)
         {
             InitializeComponent();
 
@@ -51,7 +51,7 @@ namespace Muziek_Game
             portalManager = new PortalManager(); // Initialiseer de portal manager
             characterManager = new CharacterManager(); // Initialiseer de character manager
 
-            StartGame(0); // Start het spel. Int is de level die gekozen word.
+            StartGame(level - 1); // Start het spel. Int is de level die gekozen word.
         }
         /// <summary>
         /// Zorgt er voor dat de ProcessInput de windows meekrijgt als variabele zodat het buiten de gamecontrol bruikbaar is.

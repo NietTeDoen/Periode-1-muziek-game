@@ -100,7 +100,7 @@ namespace Muziek_Game
             var mainWindow = Window.GetWindow(this) as MainWindow;
             if (mainWindow != null)
             {
-                mainWindow.MainContent.Content = new GameControl(); // Vervang het menu door de game
+                mainWindow.MainContent.Content = new LevelSelector(); // Vervang het menu door de game
                 _audioManager.PauseMedia();
                 
             }
