@@ -55,6 +55,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="LevelSelector.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="ModsMenu.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -98,6 +102,9 @@
     <Compile Include="AudioManager.cs" />
     <Compile Include="Block.cs" />
     <Compile Include="CharacterManager.cs" />
+    <Compile Include="LevelSelector.xaml.cs">
+      <DependentUpon>LevelSelector.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ModsMenu.xaml.cs">
       <DependentUpon>ModsMenu.xaml</DependentUpon>
     </Compile>
