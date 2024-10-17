@@ -27,7 +27,6 @@ namespace Muziek_Game
         private static MediaPlayer _mediaPlayer;
         public GameControl(int level)
         {
-
             InitializeComponent();
 
             //Maak een MediaPlayer aan voor de level
@@ -151,14 +150,14 @@ namespace Muziek_Game
                     case 0:
                         break; // Geen blokken
                     case 1:
-                        SpawnBlock(upperRowY, startX, true, levelIndex); // Bovenste rij
+                        SpawnBlock(upperRowY, startX, true, levelIndex, 0); // Bovenste rij
                         break;
                     case 2:
-                        SpawnBlock(lowerRowY, startX, false, levelIndex); // Onderste rij
+                        SpawnBlock(lowerRowY, startX, false, levelIndex, 1); // Onderste rij
                         break;
                     case 3:
-                        SpawnBlock(upperRowY, startX, true, levelIndex); // Bovenste rij
-                        SpawnBlock(lowerRowY, startX, false, levelIndex); // Onderste rij
+                        SpawnBlock(upperRowY, startX, true, levelIndex, 2); // Bovenste rij
+                        SpawnBlock(lowerRowY, startX, false, levelIndex, 2); // Onderste rij
                         break;
                 }
             }
@@ -201,10 +200,10 @@ namespace Muziek_Game
             GameCanvas.Focus(); // Reset de focus om besturing te houden
         }
 
-        public void SpawnBlock(int startY, int startX, bool firstRow, int levelIndex)
+        public void SpawnBlock(int startY, int startX, bool firstRow, int levelIndex, int sprite)
         {
             Level currentLevel = levels[levelIndex];
-            Block block = new Block(GameCanvas, startY, startX, firstRow, currentLevel.Tempo); // Snelheid = 100
+            Block block = new Block(GameCanvas, startY, startX, firstRow, currentLevel.Tempo, sprite); // Snelheid = 100
             blocks.Add(block);
         }
 
@@ -336,6 +335,16 @@ namespace Muziek_Game
         private void ResumeButton_Click(object sender, RoutedEventArgs e)
         {
             ResumeGame();
+        }
+
+
+        private void LevelButton_Click(object sender, RoutedEventArgs e)
+        {
+            var window = Window.GetWindow(this) as MainWindow; // Zorg ervoor dat je een referentie hebt naar MainWindow
+            if (window != null)
+            {
+                window.MainContent.Content = new LevelSelector(); // MainMenu moet een UserControl zijn
+            }
         }
 
         private void MainMenuButton_Click(object sender, RoutedEventArgs e)

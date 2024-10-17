@@ -3,6 +3,8 @@ using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using System.Windows.Media.Animation;
+using System.CodeDom;
 
 internal class Block
 {
@@ -20,13 +22,13 @@ internal class Block
     /// <param name="startx"></param>
     /// <param name="firstrow"></param>
     /// <param name="speed"></param>
-    public Block(Canvas canvas, int starty, int startx, bool firstrow, double speed)
+    public Block(Canvas canvas, int starty, int startx, bool firstrow, double bpm, int sprite)
     {
         int width = 50;
         int height = 50;
 
         GameCanvas = canvas;
-        Speed = speed;
+        Speed = bpm;
 
         BlockObj = new Rectangle()
         {
@@ -41,7 +43,21 @@ internal class Block
 
         //Voeg afbeeldingen toe aan de blokken en selecteer de afbeelding afhankelijk van randomNumber.
         ImageBrush imageBrush = new ImageBrush();
-        imageBrush.ImageSource = new BitmapImage(new Uri("pack://application:,,,/Assets/Note"+ randomNumber +".png", UriKind.Absolute));
+        switch (sprite)
+        {
+            case 0:
+                imageBrush.ImageSource = new BitmapImage(new Uri("pack://application:,,,/Assets/Note1.png", UriKind.Absolute));
+                break;
+            case 1:
+                imageBrush.ImageSource = new BitmapImage(new Uri("pack://application:,,,/Assets/Note2.png", UriKind.Absolute));
+                break;
+            case 2:
+                imageBrush.ImageSource = new BitmapImage(new Uri("pack://application:,,,/Assets/Note3.png", UriKind.Absolute));
+                break;
+            default:
+                imageBrush.ImageSource = new BitmapImage(new Uri("pack://application:,,,/Assets/Note1.png", UriKind.Absolute));
+                break;
+        }
         BlockObj.Fill = imageBrush;
 
         Canvas.SetLeft(BlockObj, startx);
@@ -54,10 +70,22 @@ internal class Block
     /// Functie om blokken te verplaatsen
     /// </summary>
     /// <param name="deltaTime"></param>
+    // Definieer de BPM en de afstand per beat
+    private double bpm; //bpm
+    private double distancePerBeat = 100; // Afstand die het blok per beat beweegt
+
     public void MoveLeft(double deltaTime)
     {
-            double newX = Canvas.GetLeft(BlockObj) - Speed * deltaTime; // Verplaats de blokken naar links
-            Canvas.SetLeft(BlockObj, newX);
+        bpm = Speed;
+        // Bereken de tijd per beat in seconden
+        double secondsPerBeat = 60.0 / bpm;
+
+        // Bereken de snelheid in pixels per seconde
+        double speed = distancePerBeat / secondsPerBeat; // pixels per seconde
+
+        // Verplaats de blokken naar links
+        double newX = Canvas.GetLeft(BlockObj) - speed * deltaTime;
+        Canvas.SetLeft(BlockObj, newX);
     }
     public void Delete()
     {
