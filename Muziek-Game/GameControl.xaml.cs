@@ -115,14 +115,14 @@ namespace Muziek_Game
                     case 0:
                         break; // Geen blokken
                     case 1:
-                        SpawnBlock(upperRowY, startX, true, levelIndex); // Bovenste rij
+                        SpawnBlock(upperRowY, startX, true, levelIndex, 0); // Bovenste rij
                         break;
                     case 2:
-                        SpawnBlock(lowerRowY, startX, false, levelIndex); // Onderste rij
+                        SpawnBlock(lowerRowY, startX, false, levelIndex, 1); // Onderste rij
                         break;
                     case 3:
-                        SpawnBlock(upperRowY, startX, true, levelIndex); // Bovenste rij
-                        SpawnBlock(lowerRowY, startX, false, levelIndex); // Onderste rij
+                        SpawnBlock(upperRowY, startX, true, levelIndex, 2); // Bovenste rij
+                        SpawnBlock(lowerRowY, startX, false, levelIndex, 2); // Onderste rij
                         break;
                 }
             }
@@ -165,10 +165,10 @@ namespace Muziek_Game
             GameCanvas.Focus(); // Reset de focus om besturing te houden
         }
 
-        public void SpawnBlock(int startY, int startX, bool firstRow, int levelIndex)
+        public void SpawnBlock(int startY, int startX, bool firstRow, int levelIndex, int sprite)
         {
             Level currentLevel = levels[levelIndex];
-            Block block = new Block(GameCanvas, startY, startX, firstRow, currentLevel.Tempo); // Snelheid = 100
+            Block block = new Block(GameCanvas, startY, startX, firstRow, currentLevel.Tempo, sprite); // Snelheid = 100
             blocks.Add(block);
         }
 

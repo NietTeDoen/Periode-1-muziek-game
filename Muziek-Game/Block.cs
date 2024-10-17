@@ -20,7 +20,7 @@ internal class Block
     /// <param name="startx"></param>
     /// <param name="firstrow"></param>
     /// <param name="speed"></param>
-    public Block(Canvas canvas, int starty, int startx, bool firstrow, double speed)
+    public Block(Canvas canvas, int starty, int startx, bool firstrow, double speed, int sprite)
     {
         int width = 50;
         int height = 50;
@@ -41,7 +41,21 @@ internal class Block
 
         //Voeg afbeeldingen toe aan de blokken en selecteer de afbeelding afhankelijk van randomNumber.
         ImageBrush imageBrush = new ImageBrush();
-        imageBrush.ImageSource = new BitmapImage(new Uri("pack://application:,,,/Assets/Note"+ randomNumber +".png", UriKind.Absolute));
+        switch (sprite)
+        {
+            case 0:
+                imageBrush.ImageSource = new BitmapImage(new Uri("pack://application:,,,/Assets/Note1.png", UriKind.Absolute));
+                break;
+            case 1:
+                imageBrush.ImageSource = new BitmapImage(new Uri("pack://application:,,,/Assets/Note2.png", UriKind.Absolute));
+                break;
+            case 2:
+                imageBrush.ImageSource = new BitmapImage(new Uri("pack://application:,,,/Assets/Note3.png", UriKind.Absolute));
+                break;
+            default:
+                imageBrush.ImageSource = new BitmapImage(new Uri("pack://application:,,,/Assets/Note1.png", UriKind.Absolute));
+                break;
+        }
         BlockObj.Fill = imageBrush;
 
         Canvas.SetLeft(BlockObj, startx);
