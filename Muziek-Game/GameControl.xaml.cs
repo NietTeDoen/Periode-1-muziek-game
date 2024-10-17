@@ -23,11 +23,27 @@ namespace Muziek_Game
         private bool isPaused = false; // Houdt bij of het spel gepauzeerd is
         private int HitCount = 0;
         private int score = 0;
-        private System.Windows.Point AwayLocation { get; set; } // De locatie waar de blokjes heen gaan als ze geraakt zijn.
         public Label ScoreLabel;
+        private static MediaPlayer _mediaPlayer;
         public GameControl(int level)
         {
+
             InitializeComponent();
+
+            //Maak een MediaPlayer aan voor de level
+            if (_mediaPlayer == null)
+            {
+                _mediaPlayer = new MediaPlayer();
+            }
+
+            // Gebruik een reguliere bestands-URI en vul het level nummer in als pad
+            string musicPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", "muziek", level + ".mp3");
+
+            Uri musicUri = new Uri(musicPath);
+            _mediaPlayer.Volume = 0.5; // Maximaal volume
+            _mediaPlayer.Open(musicUri);
+            _mediaPlayer.Play();
+
 
             // Start de stopwatch voor timing
             stopwatch = new Stopwatch();
@@ -44,7 +60,25 @@ namespace Muziek_Game
             levels = new List<Level>
             {
                 new Level(120, 1, 500, new int[] { 1, 0, 1, 2, 3, 1, 0, 0, 2, 1, 3, 1 }), // Niveau 1
-                new Level(130, 2, 400, new int[] { 0, 1, 1, 0, 1 }), // Niveau 2
+                new Level(130, 2, 400, new int[]
+                {
+                    1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0,
+                    2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0,
+                    1, 0, 3, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
+                    3, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0, 3, 0,
+                    1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0,
+                    2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0,
+                    1, 0, 3, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
+                    3, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0, 3, 0,
+                    1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0,
+                    2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0,
+                    1, 0, 3, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
+                    3, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0, 3, 0,
+                    1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0,
+                    2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0,
+                    1, 0, 3, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
+                    3, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0
+                }), // Niveau 2 - Billie Jean
                 new Level(140, 3, 300, new int[] { 1, 1, 0, 2, 2 }), // Niveau 3
             };
 
@@ -52,7 +86,9 @@ namespace Muziek_Game
             characterManager = new CharacterManager(); // Initialiseer de character manager
 
             StartGame(level - 1); // Start het spel. Int is de level die gekozen word.
-        }
+    }
+
+        //}
         /// <summary>
         /// Zorgt er voor dat de ProcessInput de windows meekrijgt als variabele zodat het buiten de gamecontrol bruikbaar is.
         /// </summary>
@@ -103,7 +139,7 @@ namespace Muziek_Game
             blocks = new List<Block>(); // Reset de blokkenlijst voor het nieuwe niveau
 
             int upperRowY = 350; // Y-positie voor de bovenste rij
-            int lowerRowY = 550; // Y-positie voor de onderste rij
+            int lowerRowY = 500; // Y-positie voor de onderste rij
 
             // Spawn blokken op basis van de array van het huidige niveau
             for (int i = 0; i < currentLevel.BlockRows.Length; i++)
@@ -215,7 +251,7 @@ namespace Muziek_Game
         /// </summary>
         public void MissDetection()
         {
-            Rect hitboxMiss = new Rect(50, 0, 10, 5000); //Maak een onzichtbare Rect achter het karakter
+            Rect hitboxMiss = new Rect(200, 0, 10, 5000); //Maak een onzichtbare Rect achter het karakter
             foreach (var block in blocks)
             {
                 Rect hitboxBlock = new Rect(Canvas.GetLeft(block.BlockObj), Canvas.GetTop(block.BlockObj), block.BlockObj.ActualHeight, block.BlockObj.ActualWidth); //Maak een Rect aan op de plek van de Rectangle zodat het te vergelijken is
@@ -309,6 +345,7 @@ namespace Muziek_Game
             {
                 window.MainContent.Content = new MainMenu(); // MainMenu moet een UserControl zijn
             }
+            _mediaPlayer.Stop();
         }
     }
 }

@@ -28,11 +28,11 @@ public class AudioManager
         _mediaPlayer.Pause();
     }
 
-    public void LoadAbba()
-    {
-        string musicPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", "muziek", "ABBA.mp3");
-        PlayMedia(musicPath);
-    }
+    //public void LoadAbba()
+    //{
+    //    string musicPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", "muziek", "ABBA.mp3");
+    //    PlayMedia(musicPath);
+    //}
 
     // Zorg ervoor dat er slechts één MediaPlayer is
     public static MediaPlayer GetMediaPlayer()

@@ -20,7 +20,7 @@ namespace Muziek_Game
         /// <summary>
         /// Initialiseer de MediaPlayer
         /// </summary>
-        private void InitializeMediaPlayer()
+        public void InitializeMediaPlayer()
         {
             _mediaPlayer = new MediaPlayer();
             _mediaPlayer.MediaEnded += MediaPlayer_MediaEnded;

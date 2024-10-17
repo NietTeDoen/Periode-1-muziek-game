@@ -181,9 +181,15 @@
     <Resource Include="Assets\Note3.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\muziek\Billie Jean.mp3" />
-    <Content Include="Assets\muziek\Godzilla.mp3" />
-    <Content Include="Assets\muziek\Running Up That Hill.mp3" />
+    <Content Include="Assets\muziek\2.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\muziek\3.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\muziek\1.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Assets\Menu.Icons\Polygon 1.png" />
     <Resource Include="Assets\Menu.Icons\person.png" />
     <Resource Include="Assets\Menu.Icons\Cpu.png" />
