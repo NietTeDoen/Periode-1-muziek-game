@@ -44,7 +44,7 @@ namespace Muziek_Game
             levels = new List<Level>
             {
                 new Level(120, 1, 500, new int[] { 1, 0, 1, 2, 3, 1, 0, 0, 2, 1, 3, 1 }), // Niveau 1
-                new Level(130, 2, 400, new int[] { 0, 1, 1, 0, 1 }), // Niveau 2
+                new Level(180, 2, 400, new int[] { 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 2, 3, 2, 3, 2, 2, 1 }), // Niveau 2
                 new Level(140, 3, 300, new int[] { 1, 1, 0, 2, 2 }), // Niveau 3
             };
 
@@ -103,7 +103,7 @@ namespace Muziek_Game
             blocks = new List<Block>(); // Reset de blokkenlijst voor het nieuwe niveau
 
             int upperRowY = 350; // Y-positie voor de bovenste rij
-            int lowerRowY = 550; // Y-positie voor de onderste rij
+            int lowerRowY = 500; // Y-positie voor de onderste rij
 
             // Spawn blokken op basis van de array van het huidige niveau
             for (int i = 0; i < currentLevel.BlockRows.Length; i++)
