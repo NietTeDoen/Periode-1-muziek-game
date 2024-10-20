@@ -13,15 +13,14 @@ namespace Muziek_Game
         public ModsMenu()
         {
             InitializeComponent();
-            // Initialiseer de Mods-lijst met IsActive standaard op false
-            Mods = new ObservableCollection<ModItem>
+
+            // Haal de Mods-lijst uit het MainWindow
+            var window = Application.Current.MainWindow as MainWindow;
+            if (window != null)
             {
-                new ModItem { Name = "Easy", IsActive = false },   // Standaard op uit
-                new ModItem { Name = "No Fail", IsActive = false }, // Standaard op uit
-                new ModItem { Name = "Hard", IsActive = false },    // Standaard op uit
-                new ModItem { Name = "Hidden", IsActive = false }   // Standaard op uit
-            };
-            ModsList.ItemsSource = Mods;
+                Mods = window.Mods; // Gebruik de Mods-lijst van MainWindow
+                ModsList.ItemsSource = Mods; // Verbind de lijst met de UI
+            }
         }
 
         private void ToggleMod_Click(object sender, RoutedEventArgs e)
