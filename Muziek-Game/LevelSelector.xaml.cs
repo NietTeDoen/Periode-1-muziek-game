@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Muziek_Game
 {
@@ -8,6 +9,26 @@ namespace Muziek_Game
         public LevelSelector()
         {
             InitializeComponent();
+        }
+
+        private void ProcessInput_Loaded(object sender, RoutedEventArgs e)
+        {
+            var window = Window.GetWindow(this);
+            window.KeyDown += ProcessInput;
+        }
+
+        private void ProcessInput(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.B)
+            {
+                var mainWindow = Window.GetWindow(this) as MainWindow;
+                if (mainWindow != null)
+                {
+                    mainWindow.MainContent.Content = new GameControl(4); // Vervang het menu door de game
+
+                }
+            }
+            
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)

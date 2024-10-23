@@ -1,7 +1,8 @@
 ﻿<UserControl x:Class="Muziek_Game.LevelSelector"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             Height="720" Width="1100">
+             Height="720" Width="1100"
+             Loaded="ProcessInput_Loaded">
     <!-- Maximaal 1100px breed -->
     <Grid Background="White">
         <Grid.RowDefinitions>

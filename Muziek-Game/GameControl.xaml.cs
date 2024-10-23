@@ -107,6 +107,11 @@ namespace Muziek_Game
                     1, 0, 3, 0, 2, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 3, 0, 1, 0, 3, 0, 1, 0, 2, 0, 3, 0, 1, 0, 3, 0,
                     2, 0, 1, 0, 2, 0, 1, 0, 3, 0, 2, 0, 1, 0, 2, 0, 1, 0, 3, 0, 2, 0
                 }), // Niveau 3 - Godzilla
+            new Level(120, 1, 500, new int[]
+                {
+                    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+                }), // Test Level
+            
             };
 
             portalManager = new PortalManager(); // Initialiseer de portal manager
@@ -251,7 +256,6 @@ namespace Muziek_Game
             if (currentHealth <= 0)
             {
                 healthbarImage.Source = new BitmapImage(new Uri(HealthIcons[0], UriKind.Absolute));
-                await Task.Delay(400);
                 // Roep de methode aan om het death screen te tonen
                 ShowDeathScreen();
                 return; // Stop hier verder te gaan
@@ -478,6 +482,15 @@ namespace Muziek_Game
             }
         }
 
+        /// <summary>
+        /// DEZE FUNCTIE EINDIGT DE GAME IN EEN WIN!!!!
+        /// </summary>
+        public void endgame()
+        {
+            WinScreen.Visibility = Visibility.Visible; // Verberg het pauze menu
+            ScoreTextBlock1.Text = score.ToString();
+        }
+
         private int blockcount;
         public void HitDetected(bool hit)
         {   if (hit == true)
@@ -486,6 +499,10 @@ namespace Muziek_Game
                 blockcount--;
                 Console.WriteLine("Hitcount: " + blockcount);
                 score = Score(HitCount);
+                if(blockcount <= 0)
+                {
+                    endgame();
+                }
                 UpdateHealth(true);
                 DisplayScore();
             }
@@ -503,6 +520,11 @@ namespace Muziek_Game
             if (ismiss == 2)
             {
                 blockcount--;
+
+                if (blockcount <= 0)
+                {
+                    endgame();
+                }
                 // Er is een miss gedetecteerd en health is nog niet bijgewerkt
                 UpdateHealth(false);
 

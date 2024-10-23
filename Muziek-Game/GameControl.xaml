@@ -21,6 +21,17 @@
             </StackPanel>
         </Grid>
 
+        <Grid x:Name="WinScreen" Visibility="Collapsed" Background="#80000000" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock Text="YOU WON!" FontSize="48" Foreground="White" Margin="10" HorizontalAlignment="Center"/>
+                <TextBlock x:Name="ScoreTextBlock1" FontSize="24" Foreground="White" Margin="10" HorizontalAlignment="Center"/>
+
+                <Button Name="RestartButton1" Click="RestartButton_Click" Content="Restart Game" Margin="10" FontSize="18" Width="200" HorizontalAlignment="Center"/>
+                <Button Name="LevelSelectorButton11" Click="LevelButton_Click" Content="Level Selector" Margin="10" FontSize="18" Width="200" HorizontalAlignment="Center"/>
+                <Button Name="MainMenuButton1" Click="MainMenuButton_Click" Content="Main Menu" Margin="10" FontSize="18" Width="200" HorizontalAlignment="Center"/>
+            </StackPanel>
+        </Grid>
+
         <!-- Pauze menu -->
         <Grid x:Name="PauseMenu" Visibility="Collapsed" Background="#80000000" VerticalAlignment="Center" HorizontalAlignment="Center" Width="300" Height="200">
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
