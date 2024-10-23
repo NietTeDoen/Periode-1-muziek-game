@@ -181,7 +181,7 @@
     <Resource Include="Assets\Note3.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\Health\Health0.png" /> 
+    <Resource Include="Assets\Health\Health0.png" />
     <Resource Include="Assets\Health\Health1.png" />
     <Resource Include="Assets\Health\Health10.png" />
     <Resource Include="Assets\Health\Health2.png" />
@@ -192,6 +192,30 @@
     <Resource Include="Assets\Health\Health7.png" />
     <Resource Include="Assets\Health\Health8.png" />
     <Resource Include="Assets\Health\Health9.png" />
+    <Resource Include="Assets\Background\ezgif-frame-002.jpg" />
+    <Resource Include="Assets\Background\ezgif-frame-003.jpg" />
+    <Resource Include="Assets\Background\ezgif-frame-004.jpg" />
+    <Resource Include="Assets\Background\ezgif-frame-005.jpg" />
+    <Resource Include="Assets\Background\ezgif-frame-006.jpg" />
+    <Resource Include="Assets\Background\ezgif-frame-007.jpg" />
+    <Resource Include="Assets\Background\ezgif-frame-008.jpg" />
+    <Resource Include="Assets\Background\ezgif-frame-009.jpg" />
+    <Resource Include="Assets\Background\ezgif-frame-010.jpg" />
+    <Resource Include="Assets\Background\ezgif-frame-011.jpg" />
+    <Resource Include="Assets\Background\ezgif-frame-012.jpg" />
+    <Resource Include="Assets\Background\ezgif-frame-013.jpg" />
+    <Resource Include="Assets\Background\ezgif-frame-014.jpg" />
+    <Resource Include="Assets\Background\ezgif-frame-015.jpg" />
+    <Resource Include="Assets\Background\ezgif-frame-016.jpg" />
+    <Resource Include="Assets\Background\ezgif-frame-017.jpg" />
+    <Resource Include="Assets\Background\ezgif-frame-018.jpg" />
+    <Resource Include="Assets\Background\ezgif-frame-019.jpg" />
+    <Resource Include="Assets\Background\ezgif-frame-020.jpg" />
+    <Resource Include="Assets\Background\ezgif-frame-021.jpg" />
+    <Resource Include="Assets\Background\ezgif-frame-022.jpg" />
+    <Resource Include="Assets\Background\ezgif-frame-023.jpg" />
+    <Resource Include="Assets\Background\ezgif-frame-024.jpg" />
+    <Resource Include="Assets\Background\ezgif-frame-001.jpg" />
     <Content Include="Assets\muziek\2.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

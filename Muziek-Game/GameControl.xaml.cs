@@ -20,6 +20,7 @@ namespace Muziek_Game
         private CharacterManager characterManager; // Beheerder voor het karakter
         private int[] portalPositie = { 1000, 300 }; // Startpositie voor het portaal
         private int[] characterPositie = { 100, 300 }; // Startpositie voor het karakter
+        private int[] backgroundPositie = {0, 0};
         private Stopwatch stopwatch; // Voor delta timing
         private long previousTime; // Tijd van de vorige frame
         private List<Level> levels; // Lijst van niveaus
@@ -30,6 +31,7 @@ namespace Muziek_Game
         public Label ScoreLabel;
         private static MediaPlayer _mediaPlayer;
         private Dictionary<int, string> HealthIcons = new Dictionary<int, string>();
+        private Dictionary<int, string> BackgroundImages = new Dictionary<int, string>();
         private Image healthbarImage;
         private int currentHealth = 10;
 
@@ -111,7 +113,91 @@ namespace Muziek_Game
             characterManager = new CharacterManager(); // Initialiseer de character manager
 
             StartGame(level - 1); // Start het spel. Int is de level die gekozen word.
+            backgroundimages();
     }
+
+
+        public void backgroundimages()
+        {
+            string characterFolderPath = "pack://application:,,,/Assets/Background/";
+            BackgroundImages.Add(0, characterFolderPath + "ezgif-frame-001.jpg");
+            BackgroundImages.Add(1, characterFolderPath + "ezgif-frame-002.jpg");
+            BackgroundImages.Add(2, characterFolderPath + "ezgif-frame-003.jpg");
+            BackgroundImages.Add(3, characterFolderPath + "ezgif-frame-004.jpg");
+            BackgroundImages.Add(4, characterFolderPath + "ezgif-frame-005.jpg");
+            BackgroundImages.Add(5, characterFolderPath + "ezgif-frame-006.jpg");
+            BackgroundImages.Add(6, characterFolderPath + "ezgif-frame-007.jpg");
+            BackgroundImages.Add(7, characterFolderPath + "ezgif-frame-008.jpg");
+            BackgroundImages.Add(8, characterFolderPath + "ezgif-frame-009.jpg");
+            BackgroundImages.Add(9, characterFolderPath + "ezgif-frame-010.jpg");
+            BackgroundImages.Add(10, characterFolderPath + "ezgif-frame-011.jpg");
+            BackgroundImages.Add(11, characterFolderPath + "ezgif-frame-012.jpg");
+            BackgroundImages.Add(12, characterFolderPath + "ezgif-frame-013.jpg");
+            BackgroundImages.Add(13, characterFolderPath + "ezgif-frame-014.jpg");
+            BackgroundImages.Add(14, characterFolderPath + "ezgif-frame-015.jpg");
+            BackgroundImages.Add(15, characterFolderPath + "ezgif-frame-016.jpg");
+            BackgroundImages.Add(16, characterFolderPath + "ezgif-frame-017.jpg");
+            BackgroundImages.Add(17, characterFolderPath + "ezgif-frame-018.jpg");
+            BackgroundImages.Add(18, characterFolderPath + "ezgif-frame-019.jpg");
+            BackgroundImages.Add(19, characterFolderPath + "ezgif-frame-020.jpg");
+            BackgroundImages.Add(20, characterFolderPath + "ezgif-frame-021.jpg");
+            BackgroundImages.Add(21, characterFolderPath + "ezgif-frame-022.jpg");
+            BackgroundImages.Add(22, characterFolderPath + "ezgif-frame-023.jpg");
+            BackgroundImages.Add(23, characterFolderPath + "ezgif-frame-024.jpg");
+
+            BackgroundSprite = new Image
+            {
+                Width = 1080,  // Je kunt de breedte naar wens aanpassen
+                Height = 720,  // Je kunt de hoogte naar wens aanpassen
+                Stretch = Stretch.Fill,  // Zorgt ervoor dat het icon de juiste grootte heeft
+                Source = new BitmapImage(new Uri(BackgroundImages[0], UriKind.Absolute))  // Start bij health 10
+            };
+
+            BCKGR = new Rectangle
+            {
+                
+            };
+
+            this.Loaded += (s, e) =>
+            {
+                BCKGR.Width = this.ActualWidth;  // Gebruik de grootte van het window
+                BCKGR.Height = this.ActualHeight + 50;
+
+                // Zorg ervoor dat de positie van de Rectangle (0, 0) is
+                Canvas.SetLeft(BCKGR, 0);
+                Canvas.SetTop(BCKGR, -50);
+            };
+
+            Canvas.SetLeft(BCKGR, backgroundPositie[0]);
+            Canvas.SetTop(BCKGR, backgroundPositie[1]);
+
+            Panel.SetZIndex(BCKGR, -1);
+
+            GameCanvas.Children.Add(BCKGR);
+
+            StartAnimation();
+        }
+
+        private Rectangle BCKGR;
+        private Image BackgroundSprite;
+        private DispatcherTimer animationTimer;
+        private int currentFrame = 0;
+
+        private void StartAnimation()
+        {
+            animationTimer = new DispatcherTimer();
+            animationTimer.Interval = TimeSpan.FromMilliseconds(50); // 50 ms per frame
+            animationTimer.Tick += UpdateAnimationFrame;
+            animationTimer.Start();
+        }
+        private void UpdateAnimationFrame(object sender, EventArgs e)
+        {
+            // Update het frame van de animatie
+            currentFrame = (currentFrame + 1) % 24;
+            ImageBrush imageBrush = new ImageBrush();
+            imageBrush.ImageSource = new BitmapImage(new Uri(BackgroundImages[currentFrame], UriKind.Absolute));
+            BCKGR.Fill = imageBrush;
+        }
 
         public void healthbaricons()
         {
