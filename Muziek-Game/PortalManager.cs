@@ -28,6 +28,8 @@ namespace Muziek_Game
                 imageBrush.ImageSource = new BitmapImage(new Uri("pack://application:,,,/Assets/NetherPortal.png", UriKind.Absolute));
                 portal.Fill = imageBrush;
 
+                portal.Visibility = System.Windows.Visibility.Hidden;
+
                 // Positioneer het portaal op het canvas
                 Canvas.SetLeft(portal, portalPositie[0]);
                 Canvas.SetTop(portal, portalPositie[1]);
