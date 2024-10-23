@@ -34,6 +34,10 @@ namespace Muziek_Game
         private Dictionary<int, string> BackgroundImages = new Dictionary<int, string>();
         private Image healthbarImage;
         private int currentHealth = 10;
+        private int streakCount = 0;         // Houdt de huidige streak bij
+        private int highestStreak = 0;       // Houdt de hoogste streak ooit bij
+        private int baseScore = 1;           // Basis score per hit
+        private int streakBonusMultiplier = 2; // Bepaal de vermenigvuldiger voor streakbonus
 
         public GameControl(int level)
         {
@@ -496,13 +500,25 @@ namespace Muziek_Game
         {   if (hit == true)
             {
                 HitCount++;
+                streakCount++; // Verhoog de streak bij elke hit
+
+                // Update hoogste streak
+                if (streakCount > highestStreak)
+                {
+                    highestStreak = streakCount;
+                }
+
                 blockcount--;
                 Console.WriteLine("Hitcount: " + blockcount);
+
+                // Bereken score met streakbonus
                 score = Score(HitCount);
-                if(blockcount <= 0)
+
+                if (blockcount <= 0)
                 {
                     endgame();
                 }
+
                 UpdateHealth(true);
                 DisplayScore();
             }
@@ -525,10 +541,13 @@ namespace Muziek_Game
                 {
                     endgame();
                 }
-                // Er is een miss gedetecteerd en health is nog niet bijgewerkt
+
+                // Reset de streak bij een miss
+                streakCount = 0;
+                Console.WriteLine("Miss detected! Streak reset to 0.");
+
                 UpdateHealth(false);
 
-                // Zet de healthUpdated vlag naar true zodat hij niet opnieuw wordt geüpdatet
                 healthUpdated = true;
 
                 Console.WriteLine("Hitcount: " + blockcount);
@@ -542,8 +561,10 @@ namespace Muziek_Game
         /// <returns></returns>
         public int Score(int Hitcount)
         {
-            int score = Hitcount * 1; 
-            Console.WriteLine("score: " + score); 
+            int bonusScore = baseScore + (streakCount * streakBonusMultiplier); // Hoe hoger de streak, hoe meer bonus
+            score += bonusScore;
+
+            Console.WriteLine($"Score: {score}, Streak: {streakCount}, Bonus: {bonusScore}");
             return score;
         }
 
@@ -551,7 +572,7 @@ namespace Muziek_Game
         {
             scoreLabel.Content = "Score: " + score.ToString();
 
-            if (score >= 1000)
+            if (score >= 3000)
             {
                 scoreLabel.Foreground = new SolidColorBrush(Colors.Green); // Groen als de score 100 of hoger is
             }
@@ -562,6 +583,15 @@ namespace Muziek_Game
             else
             {
                 scoreLabel.Foreground = new SolidColorBrush(Colors.Red); // Rood als de score lager dan 50 is
+            }
+
+            if (streakCount >= 30)
+            {
+                scoreLabel.FontWeight = FontWeights.Bold; // Maak de tekst vet bij een streak van 10 of hoger
+            }
+            else
+            {
+                scoreLabel.FontWeight = FontWeights.Normal; // Normaal bij lagere streaks
             }
         }
 
