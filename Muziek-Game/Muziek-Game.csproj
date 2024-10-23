@@ -181,7 +181,7 @@
     <Resource Include="Assets\Note3.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\Health\Health0.png" />
+    <Resource Include="Assets\Health\Health0.png" /> 
     <Resource Include="Assets\Health\Health1.png" />
     <Resource Include="Assets\Health\Health10.png" />
     <Resource Include="Assets\Health\Health2.png" />
