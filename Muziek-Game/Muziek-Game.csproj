@@ -190,6 +190,7 @@
     <Content Include="Assets\muziek\1.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Assets\Weapon.png" />
     <Resource Include="Assets\Menu.Icons\Polygon 1.png" />
     <Resource Include="Assets\Menu.Icons\person.png" />
     <Resource Include="Assets\Menu.Icons\Cpu.png" />

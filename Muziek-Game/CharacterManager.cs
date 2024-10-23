@@ -14,6 +14,7 @@ namespace Muziek_Game
     {
         public Rectangle character { get; private set; }
         public Rectangle weaponHitbox { get; private set; }
+        public Rectangle weapon {  get; private set; }
         private DispatcherTimer animationTimer;
         private string[] animationFrames;
         private int currentFrame = 0;
@@ -40,8 +41,18 @@ namespace Muziek_Game
                 {
                     Width = 50,
                     Height = 50,
-                    Fill = System.Windows.Media.Brushes.Blue
+                    //Fill = System.Windows.Media.Brushes.Blue
                 };
+                //Maak het vierkant van het wapen aan
+                weapon = new Rectangle
+                {
+                    Width= 100,
+                    Height = 150,
+                };
+                //Stop het wapen plaatje in het wapen vierkant
+                ImageBrush weaponBrush = new ImageBrush();
+                weaponBrush.ImageSource = new BitmapImage(new Uri("pack://application:,,,/Assets/Weapon.png", UriKind.Absolute));
+                weapon.Fill = weaponBrush;
 
                 // Laad animatieframes vanuit de "Character Animation" map
                 string characterFolderPath = "pack://application:,,,/Assets/Character%20Animation/";
@@ -60,10 +71,14 @@ namespace Muziek_Game
                 Canvas.SetTop(character, characterPositie[1]);
                 Canvas.SetLeft(weaponHitbox, characterPositie[0] + 250);
                 Canvas.SetTop(weaponHitbox, characterPositie[1] + 50);
+                Canvas.SetLeft(weapon, characterPositie[0] + 200);
+                Canvas.SetTop(weapon, characterPositie[1] + 75);
 
                 // Voeg het karakter toe aan het canvas
                 gameCanvas.Children.Add(character);
                 gameCanvas.Children.Add(weaponHitbox);
+                gameCanvas.Children.Add(weapon);
+                weapon.RenderTransform = new RotateTransform(-20, 25, 130);
 
                 // Start de animatie met een timer
                 StartAnimation();
@@ -113,7 +128,6 @@ namespace Muziek_Game
             animationTimer.Tick += UpdateAnimationFrame;
             animationTimer.Start();
         }
-
         private void UpdateAnimationFrame(object sender, EventArgs e)
         {
             if (animationFrames.Length == 0)
@@ -125,6 +139,16 @@ namespace Muziek_Game
             imageBrush.ImageSource = new BitmapImage(new Uri(animationFrames[currentFrame], UriKind.Absolute));
             character.Fill = imageBrush;
         }
+        public void AttackKeyDown()
+        {
+            weapon.RenderTransform = new RotateTransform(0, 25, 130);
+
+        }
+        public void AttackKeyUp()
+        {
+            weapon.RenderTransform = new RotateTransform(-20, 25, 130);
+        }
+
         /// <summary>
         /// Beweeg het karakter naar boven
         /// </summary>
@@ -132,6 +156,7 @@ namespace Muziek_Game
         {
             Canvas.SetTop(character, 300);
             Canvas.SetTop(weaponHitbox, 350);
+            Canvas.SetTop(weapon, 375);
         }
         /// <summary>
         /// Beweeg het karakter naar beneden
@@ -140,6 +165,7 @@ namespace Muziek_Game
         {
             Canvas.SetTop(character, 400);
             Canvas.SetTop(weaponHitbox, 450);
+            Canvas.SetTop(weapon, 475);
         }
     }
 }
