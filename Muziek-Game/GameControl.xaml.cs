@@ -21,6 +21,7 @@ namespace Muziek_Game
         private long previousTime; // Tijd van de vorige frame
         private List<Level> levels; // Lijst van niveaus
         private bool isPaused = false; // Houdt bij of het spel gepauzeerd is
+        private bool attack = false;
         private int HitCount = 0;
         private int score = 0;
         public Label ScoreLabel;
@@ -116,10 +117,11 @@ namespace Muziek_Game
         {
             var window = Window.GetWindow(this);
             window.KeyDown += ProcessInput;
+            window.KeyUp += ProcessInputRelease;
         }
 
         /// <summary>
-        /// Zorgt ervoor dat het character omhoog en omlaag kan bewegen
+        /// Houdt bij welke knoppen worden ingedrukt en reageert daarop
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -141,6 +143,22 @@ namespace Muziek_Game
                 }else{
                     PauseGame();
                 }
+            }
+            else if (e.Key == Key.Space)
+            {
+                attack = true;
+            }
+        }
+
+        /// <summary>
+        /// Houdt bij welke knoppen worden losgelaten en reageert daarop
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ProcessInputRelease(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Space){
+                attack = false;
             }
         }
 
@@ -253,7 +271,7 @@ namespace Muziek_Game
                 Rect hitboxBlock = new Rect(Canvas.GetLeft(block.BlockObj), Canvas.GetTop(block.BlockObj), block.BlockObj.ActualHeight , block.BlockObj.ActualWidth); //Maak een Rect aan op de plek van de Rectangle zodat het te vergelijken is
                 if (hitboxWeapon.IntersectsWith(hitboxBlock)) //Checkt bij elk blok of het kruist met de hitbox van het wapen
                 {
-                    if (block.hit == 0)
+                    if (block.hit == 0 && attack == true)
                     {
                         block.BlockObj.Fill = System.Windows.Media.Brushes.Green;
                         //block.Delete();
