@@ -207,6 +207,7 @@ namespace Muziek_Game
             else if (e.Key == Key.Space)
             {
                 attack = true;
+                characterManager.AttackKeyDown();
             }
         }
 
@@ -219,6 +220,7 @@ namespace Muziek_Game
         {
             if (e.Key == Key.Space){
                 attack = false;
+                characterManager.AttackKeyUp();
             }
         }
 
