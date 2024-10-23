@@ -6,8 +6,20 @@
     <!-- Stel hier de gewenste hoogte en breedte in -->
 
     <Grid>
+
         <!-- Hoofd spelgebied -->
         <Canvas x:Name="GameCanvas" Background="White"/>
+
+        <Grid x:Name="DeathScreen" Visibility="Collapsed" Background="#80000000" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock Text="Game Over!" FontSize="48" Foreground="White" Margin="10" HorizontalAlignment="Center"/>
+                <TextBlock x:Name="ScoreTextBlock" FontSize="24" Foreground="White" Margin="10" HorizontalAlignment="Center"/>
+
+                <Button Name="RestartButton" Click="RestartButton_Click" Content="Restart Game" Margin="10" FontSize="18" Width="200" HorizontalAlignment="Center"/>
+                <Button Name="LevelSelectorButton1" Click="LevelButton_Click" Content="Level Selector" Margin="10" FontSize="18" Width="200" HorizontalAlignment="Center"/>
+                <Button Name="MainMenuButton" Click="MainMenuButton_Click" Content="Main Menu" Margin="10" FontSize="18" Width="200" HorizontalAlignment="Center"/>
+            </StackPanel>
+        </Grid>
 
         <!-- Pauze menu -->
         <Grid x:Name="PauseMenu" Visibility="Collapsed" Background="#80000000" VerticalAlignment="Center" HorizontalAlignment="Center" Width="300" Height="200">
@@ -15,9 +27,11 @@
                 <TextBlock Text="Game Paused" FontSize="24" Foreground="White" Margin="10"/>
                 <Button Name="ResumeButton" Click="ResumeButton_Click" Content="Resume" Margin="10"/>
                 <Button Name="LevelSelectorButton" Click="LevelButton_Click" Content="Level Selection" Margin="10"/>
-                <Button Name="MainMenuButton" Click="MainMenuButton_Click" Content="Main Menu" Margin="10"/>
+                <Button Name="MainMenuButton2" Click="MainMenuButton_Click" Content="Main Menu" Margin="10"/>
             </StackPanel>
         </Grid>
+        
+        
         
         <Label x:Name="scoreLabel" Content="Score: 0" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="25" Margin="0,0,85,0" />
 

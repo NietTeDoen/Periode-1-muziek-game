@@ -150,21 +150,42 @@ namespace Muziek_Game
         }
 
         // Methode om de healthbar bij te werken wanneer de health verandert
-        public void UpdateHealth(bool hit)
+        public async void UpdateHealth(bool hit)
         {
             if (!hit)
                 currentHealth--;
-            if (hit)
-            {
 
-            }
-
+            
 
             // Update de healthbar image
             if (HealthIcons.ContainsKey(currentHealth))
                 healthbarImage.Source = new BitmapImage(new Uri(HealthIcons[currentHealth], UriKind.Absolute));
-            
+
+            // Controleer of de health 0 of lager is
+            if (currentHealth <= 0)
+            {
+                healthbarImage.Source = new BitmapImage(new Uri(HealthIcons[0], UriKind.Absolute));
+                await Task.Delay(400);
+                // Roep de methode aan om het death screen te tonen
+                ShowDeathScreen();
+                return; // Stop hier verder te gaan
+            }
         }
+
+
+
+        // Methode om het death screen te tonen
+        private void ShowDeathScreen()
+        {
+            // Toon een nieuw venster of een overlay voor het death screen
+
+            isPaused = true; // Set de pauzestatus
+            DeathScreen.Visibility = Visibility.Visible; // Toon het pauze men
+            _mediaPlayer.Pause(); // Pauzeer de muziek
+
+            //MessageBox.Show("Game Over! Je bent dood.", "Death Screen", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
 
         //}
         /// <summary>
@@ -383,7 +404,7 @@ namespace Muziek_Game
             if (miss && !healthUpdated)
             {
                 // Er is een miss gedetecteerd en health is nog niet bijgewerkt
-                UpdateHealth();
+                UpdateHealth(false);
 
                 // Zet de healthUpdated vlag naar true zodat hij niet opnieuw wordt geüpdatet
                 healthUpdated = true;
@@ -391,19 +412,6 @@ namespace Muziek_Game
                 // Start de cooldown timer
                 StartHealthCooldown();
             }
-        }
-
-        // Methode om de health aan te passen
-        public void UpdateHealth()
-        {
-            // Verlaag de health met 1 bij een miss, maar zorg dat het niet onder 0 gaat
-            currentHealth = Math.Max(0, currentHealth - 1);
-
-            // Update de healthbar image
-            healthbarImage.Source = new BitmapImage(new Uri(HealthIcons[currentHealth], UriKind.Absolute));
-
-            // Debug: Toon de huidige health in de console (optioneel)
-            Console.WriteLine($"Current health: {currentHealth}");
         }
 
         // Methode om de cooldown timer te starten
@@ -461,6 +469,8 @@ namespace Muziek_Game
                 scoreLabel.Foreground = new SolidColorBrush(Colors.Red); // Rood als de score lager dan 50 is
             }
         }
+
+
         
         // Pauze functie
         public void PauseGame()
@@ -489,6 +499,15 @@ namespace Muziek_Game
         private void ResumeButton_Click(object sender, RoutedEventArgs e)
         {
             ResumeGame();
+        }
+
+        private void RestartButton_Click(object sender, RoutedEventArgs e)
+        {
+            var window = Window.GetWindow(this) as MainWindow; // Zorg ervoor dat je een referentie hebt naar MainWindow
+            if (window != null)
+            {
+                window.MainContent.Content = new GameControl(1); // MainMenu moet een UserControl zijn
+            }
         }
 
 
