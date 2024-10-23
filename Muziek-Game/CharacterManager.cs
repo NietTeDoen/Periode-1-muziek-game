@@ -80,6 +80,9 @@ namespace Muziek_Game
                 gameCanvas.Children.Add(weapon);
                 weapon.RenderTransform = new RotateTransform(-20, 25, 130);
 
+                // Zet het karakter beneden neer
+                MoveBottom();
+
                 // Start de animatie met een timer
                 StartAnimation();
 

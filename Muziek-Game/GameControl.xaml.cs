@@ -367,6 +367,8 @@ namespace Muziek_Game
                 }
             }
 
+            CountBlocks();
+
             // Initialiseer het portaal en het karakter
             portalManager.InitializePortal(GameCanvas, portalPositie);
             characterManager.InitializeCharacter(GameCanvas, characterPositie);
@@ -379,6 +381,12 @@ namespace Muziek_Game
         public void StartGame(int level)
         {
             LoadLevel(level); // Laad het eerste niveau
+        }
+
+        public void CountBlocks()
+        {
+            blockcount = blocks.Count;
+            Console.WriteLine(blockcount);
         }
 
         /// <summary>
@@ -464,15 +472,19 @@ namespace Muziek_Game
                     if (block.hit == 0)
                     {
                         block.BlockObj.Fill = System.Windows.Media.Brushes.Red;
-                        MissDetected(true);
+                        MissDetected(true, block.Ismiss());
                     }
                 }
             }
         }
+
+        private int blockcount;
         public void HitDetected(bool hit)
         {   if (hit == true)
             {
                 HitCount++;
+                blockcount--;
+                Console.WriteLine("Hitcount: " + blockcount);
                 score = Score(HitCount);
                 UpdateHealth(true);
                 DisplayScore();
@@ -485,46 +497,21 @@ namespace Muziek_Game
         private DispatcherTimer healthCooldownTimer;
 
         // Methode die wordt aangeroepen als er een miss wordt gedetecteerd
-        public void MissDetected(bool miss)
+        public void MissDetected(bool miss, int ismiss)
         {
-            if (miss && !healthUpdated)
+
+            if (ismiss == 2)
             {
+                blockcount--;
                 // Er is een miss gedetecteerd en health is nog niet bijgewerkt
                 UpdateHealth(false);
 
                 // Zet de healthUpdated vlag naar true zodat hij niet opnieuw wordt geüpdatet
                 healthUpdated = true;
 
-                // Start de cooldown timer
-                StartHealthCooldown();
+                Console.WriteLine("Hitcount: " + blockcount);
             }
         }
-
-        // Methode om de cooldown timer te starten
-        private void StartHealthCooldown()
-        {
-            if (healthCooldownTimer == null)
-            {
-                // Initialiseer de timer als deze nog niet bestaat
-                healthCooldownTimer = new DispatcherTimer();
-                healthCooldownTimer.Interval = TimeSpan.FromMilliseconds(400);  // Stel de cooldowntijd in (200 ms)
-                healthCooldownTimer.Tick += HealthCooldownTimer_Tick;
-            }
-
-            // Start de timer
-            healthCooldownTimer.Start();
-        }
-
-        // Event dat wordt uitgevoerd wanneer de cooldown voorbij is
-        private void HealthCooldownTimer_Tick(object sender, EventArgs e)
-        {
-            // Zet de healthUpdated vlag terug naar false om health weer te kunnen aanpassen
-            healthUpdated = false;
-
-            // Stop de timer
-            healthCooldownTimer.Stop();
-        }
-
 
         /// <summary>
         /// Berekent score

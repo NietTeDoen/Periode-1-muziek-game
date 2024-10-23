@@ -95,4 +95,10 @@ internal class Block
     {
         hit = 1;
     }
+
+    public int Ismiss()
+    {
+        hit = 2;
+        return hit;
+    }
 }
