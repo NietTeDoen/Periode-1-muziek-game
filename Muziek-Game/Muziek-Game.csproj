@@ -181,6 +181,17 @@
     <Resource Include="Assets\Note3.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Assets\Health\Health0.png" />
+    <Resource Include="Assets\Health\Health1.png" />
+    <Resource Include="Assets\Health\Health10.png" />
+    <Resource Include="Assets\Health\Health2.png" />
+    <Resource Include="Assets\Health\Health3.png" />
+    <Resource Include="Assets\Health\Health4.png" />
+    <Resource Include="Assets\Health\Health5.png" />
+    <Resource Include="Assets\Health\Health6.png" />
+    <Resource Include="Assets\Health\Health7.png" />
+    <Resource Include="Assets\Health\Health8.png" />
+    <Resource Include="Assets\Health\Health9.png" />
     <Content Include="Assets\muziek\2.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

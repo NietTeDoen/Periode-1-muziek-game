@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Media;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Muziek_Game
 {
@@ -26,10 +29,14 @@ namespace Muziek_Game
         private int score = 0;
         public Label ScoreLabel;
         private static MediaPlayer _mediaPlayer;
+        private Dictionary<int, string> HealthIcons = new Dictionary<int, string>();
+        private Image healthbarImage;
+        private int currentHealth = 10;
+
         public GameControl(int level)
         {
             InitializeComponent();
-
+            healthbaricons();
             //Maak een MediaPlayer aan voor de level
             if (_mediaPlayer == null)
             {
@@ -105,6 +112,59 @@ namespace Muziek_Game
 
             StartGame(level - 1); // Start het spel. Int is de level die gekozen word.
     }
+
+        public void healthbaricons()
+        {
+            string characterFolderPath = "pack://application:,,,/Assets/Health/";
+
+            HealthIcons.Add(0, characterFolderPath + "Health0.png");
+            HealthIcons.Add(1, characterFolderPath + "Health1.png");
+            HealthIcons.Add(2, characterFolderPath + "Health2.png");
+            HealthIcons.Add(3, characterFolderPath + "Health3.png");
+            HealthIcons.Add(4, characterFolderPath + "Health4.png");
+            HealthIcons.Add(5, characterFolderPath + "Health5.png");
+            HealthIcons.Add(6, characterFolderPath + "Health6.png");
+            HealthIcons.Add(7, characterFolderPath + "Health7.png");
+            HealthIcons.Add(8, characterFolderPath + "Health8.png");
+            HealthIcons.Add(9, characterFolderPath + "Health9.png");
+            HealthIcons.Add(10, characterFolderPath + "Health10.png");
+
+            // Maak een Image-element voor de healthbar
+            healthbarImage = new Image
+            {
+                Width = 600,  // Je kunt de breedte naar wens aanpassen
+                Height = 200,  // Je kunt de hoogte naar wens aanpassen
+                Stretch = Stretch.Fill,  // Zorgt ervoor dat het icon de juiste grootte heeft
+                Source = new BitmapImage(new Uri(HealthIcons[currentHealth], UriKind.Absolute))  // Start bij health 10
+            };
+
+            GameCanvas.Children.Add(healthbarImage);
+
+            GameCanvas.LayoutUpdated += (sender, e) =>
+            {
+                // Center de healthbar horizontaal na layout update
+                Canvas.SetTop(healthbarImage, 0);  // Plaats de healthbar bovenaan
+                Canvas.SetLeft(healthbarImage, (GameCanvas.ActualWidth - healthbarImage.Width) / 2);  // Center horizontaal
+            };
+
+        }
+
+        // Methode om de healthbar bij te werken wanneer de health verandert
+        public void UpdateHealth(bool hit)
+        {
+            if (!hit)
+                currentHealth--;
+            if (hit)
+            {
+
+            }
+
+
+            // Update de healthbar image
+            if (HealthIcons.ContainsKey(currentHealth))
+                healthbarImage.Source = new BitmapImage(new Uri(HealthIcons[currentHealth], UriKind.Absolute));
+            
+        }
 
         //}
         /// <summary>
@@ -305,16 +365,70 @@ namespace Muziek_Game
             {
                 HitCount++;
                 score = Score(HitCount);
+                UpdateHealth(true);
                 DisplayScore();
             }
         }
+
+        private bool healthUpdated = false;
+
+        // Timer voor de cooldown
+        private DispatcherTimer healthCooldownTimer;
+
+        // Methode die wordt aangeroepen als er een miss wordt gedetecteerd
         public void MissDetected(bool miss)
         {
-            if (miss == true)
+            if (miss && !healthUpdated)
             {
-                // Er is een miss gedetecteerd. Voer deze code uit.
+                // Er is een miss gedetecteerd en health is nog niet bijgewerkt
+                UpdateHealth();
+
+                // Zet de healthUpdated vlag naar true zodat hij niet opnieuw wordt geüpdatet
+                healthUpdated = true;
+
+                // Start de cooldown timer
+                StartHealthCooldown();
             }
         }
+
+        // Methode om de health aan te passen
+        public void UpdateHealth()
+        {
+            // Verlaag de health met 1 bij een miss, maar zorg dat het niet onder 0 gaat
+            currentHealth = Math.Max(0, currentHealth - 1);
+
+            // Update de healthbar image
+            healthbarImage.Source = new BitmapImage(new Uri(HealthIcons[currentHealth], UriKind.Absolute));
+
+            // Debug: Toon de huidige health in de console (optioneel)
+            Console.WriteLine($"Current health: {currentHealth}");
+        }
+
+        // Methode om de cooldown timer te starten
+        private void StartHealthCooldown()
+        {
+            if (healthCooldownTimer == null)
+            {
+                // Initialiseer de timer als deze nog niet bestaat
+                healthCooldownTimer = new DispatcherTimer();
+                healthCooldownTimer.Interval = TimeSpan.FromMilliseconds(400);  // Stel de cooldowntijd in (200 ms)
+                healthCooldownTimer.Tick += HealthCooldownTimer_Tick;
+            }
+
+            // Start de timer
+            healthCooldownTimer.Start();
+        }
+
+        // Event dat wordt uitgevoerd wanneer de cooldown voorbij is
+        private void HealthCooldownTimer_Tick(object sender, EventArgs e)
+        {
+            // Zet de healthUpdated vlag terug naar false om health weer te kunnen aanpassen
+            healthUpdated = false;
+
+            // Stop de timer
+            healthCooldownTimer.Stop();
+        }
+
 
         /// <summary>
         /// Berekent score
