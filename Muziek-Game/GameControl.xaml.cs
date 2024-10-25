@@ -572,11 +572,11 @@ namespace Muziek_Game
         {
             scoreLabel.Content = "Score: " + score.ToString();
 
-            if (score >= 3000)
+            if (score >= 8000)
             {
                 scoreLabel.Foreground = new SolidColorBrush(Colors.Green); // Groen als de score 100 of hoger is
             }
-            else if (score >= 100)
+            else if (score >= 4000)
             {
                 scoreLabel.Foreground = new SolidColorBrush(Colors.Orange); // Oranje bij een score tussen 50 en 100
             }
